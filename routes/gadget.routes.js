@@ -54,6 +54,8 @@ gadgetRoutes.route('/find/:id').get(function (req, res) {
           gadget.name = req.body.name;
           gadget.type = req.body.type;
           gadget.watt = req.body.watt;
+          gadget.amp = req.body.amp;
+          gadget.volt = req.body.volt;
           gadget.state = req.body.state;
   
           gadget.save().then(gadget => {
