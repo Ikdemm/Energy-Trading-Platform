@@ -6,6 +6,8 @@ const express = require('express'),
     config = require('./DB');
 
 const gadgetRoute = require('./routes/gadget.routes');
+const panelRoute = require('./routes/panel.routes');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -24,13 +26,14 @@ app.get('/getversion',function(req,res){
   res.status(200).json({version:version})
 });
 
-//app.use('/business', businessRoute);
+app.use('/panels', panelRoute);
 
 app.use('/gadgets', gadgetRoute);
 
-app.use('/',function(req,res){
+/*app.use('/',function(req,res){
   res.sendFile(path.join(__dirname,'../dist/angular7crud','index.html'))
-});
+});*/
+
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){
