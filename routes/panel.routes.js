@@ -7,32 +7,16 @@ let Panel = require("../models/Panel");
 let panelDao = require("../dao/panelDao");
 
 // Defined store route
-panelRoutes.route("/add").post(function(req, res) {
-  /*save: function (body, model) {
-        let objectModel = new model(body);
-        objectModel._id = new ObjectId();
-        return objectModel.save();
-    }*/
-  console.log("req body" + JSON.stringify(req.body));
-  let panel = new Panel(req.body);
-  panel
-    .save()
-    .then(panel => {
-      res.status(200).json(req.body);
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    });
+panelRoutes.post("/add", async (req, res) => {
+  panel = await panelDao.save(req.body);
+  console.log(req.body);
+  res.send(req.body);
 });
 
 // Defined get data(index or listing) route
 panelRoutes.route("/").get(function(req, res) {
   Panel.find(function(err, panels) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(panels);
-    }
+    res.json(panels);
   });
 });
 
@@ -44,35 +28,12 @@ panelRoutes.route("/find/:id").get(function(req, res) {
   });
 });
 
-panelRoutes.route("/update").post(async function(req, res) {
+panelRoutes.post("/update", async (req, res) => {
   console.log(req.body);
-  let test = await panelDao.update(req.body, req.body._id);
+  let test = await panelDao.update(req.body, req.body.id);
   console.log(test);
-
   res.send(true);
 });
-
-/*  Defined update route
-  panelRoutes.route('/update/:id').post(function (req, res) {
-      Panel.findById(req.params.id, function(err, panel) {
-      if (!panel)
-        return next(new Error('Could not load Document'));
-      else {
-          panel.number = req.body.number;
-          panel.manufacturer = req.body.manufacturer;
-          panel.cellsNumber = req.body.cellsNumber;
-          panel.STCOutput = req.body.STCOutput;
-          panel.state = req.body.state;
-  
-          panel.save().then(panel => {
-            res.json('Update complete');
-        })
-        .catch(err => {
-              res.status(400).send("unable to update the database");
-        });
-      }
-    });
-  });*/
 
 // Defined delete | remove | destroy route
 panelRoutes.route("/delete/:id").get(function(req, res) {

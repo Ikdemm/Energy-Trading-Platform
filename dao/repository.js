@@ -1,6 +1,8 @@
 var mongoose = require("mongoose"),
   ObjectId = mongoose.Types.ObjectId;
 
+mongoose.set("useFindAndModify", false);
+
 //retrieving marque from database
 module.exports = {
   find: function(model) {

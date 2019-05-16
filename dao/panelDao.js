@@ -3,10 +3,10 @@ var base = require("./repository.js");
 
 module.exports = {
   save: function(panel) {
-    base.save(panel, panelModel);
+    return base.save(panel, panelModel);
   },
   update: function(panel, id) {
-    base.update(panel, id, panelModel);
+    return base.update(panel, id, panelModel);
   },
   findById: function(id) {
     base.findById(id, panelModel);
