@@ -8,6 +8,7 @@ const express = require("express"),
 
 const gadgetRoute = require("./routes/gadget.routes");
 const panelRoute = require("./routes/panel.routes");
+const accountRoute = require("./routes/account.routes");
 
 //Configure mongoose's promise to global promise
 mongoose.Promise = global.Promise;
@@ -43,8 +44,9 @@ var version = process.env.version || "1.0";
 // Use Routes
 require("./models/User");
 require("./dao/passport");
-//app.use("/panels", panelRoute);
-//app.use("/gadgets", gadgetRoute);
+app.use("/panels", panelRoute);
+app.use("/gadgets", gadgetRoute);
+app.use("/accounts", accountRoute);
 app.use(require("./routes"));
 
 app.get("/getversion", function(req, res) {
