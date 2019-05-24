@@ -9,7 +9,9 @@ const UserSchema = new Schema({
   //lastName: String,
   email: String,
   hash: String,
-  salt: String
+  salt: String,
+  isProducer: Boolean,
+  account: String
 });
 
 UserSchema.methods.setPassword = function(password) {
