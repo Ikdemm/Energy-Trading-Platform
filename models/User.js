@@ -11,7 +11,8 @@ const UserSchema = new Schema({
   hash: String,
   salt: String,
   isProducer: Boolean,
-  account: String
+  address: String,
+  token: String
 });
 
 UserSchema.methods.setPassword = function(password) {
@@ -51,4 +52,7 @@ UserSchema.methods.toAuthJSON = function() {
   };
 };
 
+UserSchema.methods.setAddress = function(address) {
+  this.address = address;
+};
 mongoose.model("User", UserSchema);

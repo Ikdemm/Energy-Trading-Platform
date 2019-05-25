@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = require("express").Router();
 const auth = require("../auth");
 const User = mongoose.model("User");
+const userDao = require("../../dao/userDao");
 
 //GET users
 router.route("/").get(function(req, res) {
@@ -13,30 +14,17 @@ router.route("/").get(function(req, res) {
 
 //POST new user route (optional, everyone has access)
 //routes.post('/', () => res.status(200).send('blub'))
-router.post("/", auth.optional, function(req, res, next) {
-  let user = req.body.user;
 
-  if (!user.email) {
-    res.status(422).json({
-      errors: {
-        email: "is required"
-      }
-    });
-  } else if (!user.password) {
-    return res.status(422).json({
-      errors: {
-        password: "is required"
-      }
-    });
-  }
-
-  const finalUser = new User(user);
+router.post("/", auth.optional, async (req, res, next) => {
+  finalUser = new User(user);
 
   finalUser.setPassword(user.password);
 
-  return finalUser
+  savedUser = await finalUser
     .save()
     .then(() => res.json({ user: finalUser.toAuthJSON() }));
+
+  res.send(finalUser);
 });
 
 //POST login route (optional, everyone has access)
