@@ -7,11 +7,11 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
   //firstName: String,
   //lastName: String,
-  email: String,
+  email: { type: String, unique: true },
   hash: String,
   salt: String,
   isProducer: Boolean,
-  address: String,
+  address: { type: String, unique: true },
   token: String
 });
 

@@ -16,15 +16,21 @@ router.route("/").get(function(req, res) {
 //routes.post('/', () => res.status(200).send('blub'))
 
 router.post("/", auth.optional, async (req, res, next) => {
-  finalUser = new User(user);
+  try {
+    let user = req.body;
+    console.log(user);
+    finalUser = new User(user);
 
-  finalUser.setPassword(user.password);
+    finalUser.setPassword(user.password);
 
-  savedUser = await finalUser
-    .save()
-    .then(() => res.json({ user: finalUser.toAuthJSON() }));
-
-  res.send(finalUser);
+    savedUser = await finalUser.save().then(result => {
+      console.log(result);
+      res.send({ user: finalUser });
+    });
+  } catch (e) {
+    console.log(e);
+    res.send(false);
+  }
 });
 
 //POST login route (optional, everyone has access)
