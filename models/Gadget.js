@@ -1,16 +1,29 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Gadget = new Schema({
+let Gadget = new Schema(
+  {
     _id: Schema.Types.ObjectId,
-    name: String,
-    type: String,
+    name: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      required: true
+    },
+    userAddress: {
+      type: String,
+      required: true
+    },
     watt: Number,
     volt: Number,
     amp: Number,
     state: Boolean
-},{
-    collection: 'gadgets'
-});
+  },
+  {
+    collection: "gadgets"
+  }
+);
 
-module.exports = mongoose.model('Gadget', Gadget);
+module.exports = mongoose.model("Gadget", Gadget);

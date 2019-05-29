@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/*const mongoose = require("mongoose");
 const passport = require("passport");
 const router = require("express").Router();
 const auth = require("../auth");
@@ -88,4 +88,4 @@ router.get("/current", auth.required, async function(req, res, next) {
   return res.json({ user: user.toAuthJSON() });
 });
 
-module.exports = router;
+module.exports = router;*/

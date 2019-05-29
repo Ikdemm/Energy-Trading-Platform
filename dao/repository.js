@@ -38,6 +38,14 @@ module.exports = {
     objectModel._id = new ObjectId();
     return objectModel.save();
   },
+  save2: async function(body, model) {
+    let objectModel = new model(body);
+    objectModel._id = new ObjectId();
+    objectModel.save(err, result => {
+      if (err) throw err;
+      if (result) return result;
+    });
+  },
   //updating marque from database
   update: function(body, id, model) {
     model.findOneAndUpdate({ _id: id }, body, { new: true }, function(

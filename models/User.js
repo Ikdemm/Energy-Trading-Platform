@@ -5,15 +5,37 @@ const jwt = require("jsonwebtoken");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  //firstName: String,
-  //lastName: String,
-  email: { type: String, unique: true },
+  _id: Schema.Types.ObjectId,
+  username: {
+    type: String
+    //required: true
+  },
+  email: {
+    type: String,
+    unique: true
+    //required: true
+  },
   hash: String,
   salt: String,
-  isProducer: Boolean,
-  address: { type: String, unique: true },
-  token: String
+  isProducer: {
+    type: Boolean
+    //required: true
+  },
+  address: {
+    type: String,
+    unique: true
+  },
+  token: String,
+  country: String,
+  rating: Number
 });
+
+/*userSchema.pre('save', async function(next){
+  const user = this;
+  const hash = await bcrypt.hash(this.password);
+  this.password = hash;
+  next();
+})*/
 
 UserSchema.methods.setPassword = function(password) {
   this.salt = crypto.randomBytes(16).toString("hex");
@@ -30,15 +52,15 @@ UserSchema.methods.validatePassword = function(password) {
 };
 
 UserSchema.methods.generateJWT = function() {
-  const today = new Date();
-  const expirationDate = new Date(today);
-  expirationDate.setDate(today.getDate() + 60);
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
 
   return jwt.sign(
     {
+      _id: this._id,
       email: this.email,
-      id: this._id,
-      exp: parseInt(expirationDate.getTime() / 1000, 10)
+      address: this.address,
+      exp: parseInt(expiry.getTime() / 1000, 10)
     },
     "secret"
   );
@@ -55,4 +77,5 @@ UserSchema.methods.toAuthJSON = function() {
 UserSchema.methods.setAddress = function(address) {
   this.address = address;
 };
-mongoose.model("User", UserSchema);
+
+module.exports = mongoose.model("User", UserSchema);

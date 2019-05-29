@@ -1,19 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Panel = new Schema({
- 
+let Panel = new Schema(
+  {
     _id: Schema.Types.ObjectId,
     number: Number,
     manufacturer: String,
     cellsNumber: Number,
     installationDate: Date,
     STCOutput: Number,
-    state: Boolean
+    state: Boolean,
+    userAddress: String
+  },
+  {
+    collection: "panels"
+  }
+);
 
-},
-{
-    collection: 'panels'
-});
-
-module.exports = mongoose.model('Panel', Panel);
+module.exports = mongoose.model("Panel", Panel);

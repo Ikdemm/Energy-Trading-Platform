@@ -4,11 +4,13 @@ const express = require("express"),
   cors = require("cors"),
   mongoose = require("mongoose"),
   config = require("./DB"),
-  errorHandler = require("errorhandler");
+  errorHandler = require("errorhandler"),
+  passport = require("passport");
 
 const gadgetRoute = require("./routes/gadget.routes");
 const panelRoute = require("./routes/panel.routes");
 const accountRoute = require("./routes/account.routes");
+const authRoute = require("./routes/authentication.routes");
 
 //Configure mongoose's promise to global promise
 mongoose.Promise = global.Promise;
@@ -39,20 +41,31 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     console.log("Cannot connect to the database" + err);
   }
 );
-var version = process.env.version || "1.0";
+
+// Initializing our Middleware
+app.use(passport.initialize());
+app.use("/api", authRoute);
 
 // Use Routes
-require("./models/User");
-require("./dao/passport");
 app.use("/panels", panelRoute);
 app.use("/gadgets", gadgetRoute);
 app.use("/accounts", accountRoute);
-app.use(require("./routes"));
+
+// error handlers
+// Catch unauthorised errors
+app.use(function(err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    res.status(401);
+    res.json({ message: err.name + ": " + err.message });
+  }
+});
 
 app.get("/getversion", function(req, res) {
   console.log("Version " + version);
   res.status(200).json({ version: version });
 });
+
+var version = process.env.version || "1.0";
 
 const port = process.env.PORT || 4000;
 
