@@ -1,4 +1,5 @@
 var express = require("express");
+var passport = require("passport");
 var router = express.Router();
 var jwt = require("express-jwt");
 var auth = jwt({
@@ -17,16 +18,10 @@ var ctrlAuth = require("../controllers/authentication");
 let User = require("../models/User");
 
 // profile
-router.get("/profile", auth, ctrlProfile.profileRead);
+router.get("/dashboard", auth, ctrlProfile.profileRead);
 
 // authentication
 // router.post("/register", ctrlAuth.register);
-
-/*gadgetRoutes.post("/add", async (req, res) => {
-  gadget = await gadgetDao.save(req.body);
-  console.log(gadget);
-  res.send(gadget);
-});*/
 
 router.post("/register", (req, res) => {
   console.log("I'm here");
@@ -60,6 +55,31 @@ router.post("/register", (req, res) => {
 
 //router.post("/register", ctrlAuth.register);
 
-router.post("/login", ctrlAuth.login);
+//router.post("/login", ctrlAuth.login);
 
+router.post("/login", (req, res) => {
+  console.log("I'm here");
+  console.log(req.body);
+  passport.authenticate("local", function(err, user, info) {
+    var token;
+
+    // If Passport throws/catches an error
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+
+    // If a user is found
+    if (user) {
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        token: token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+  });
+});
 module.exports = router;
