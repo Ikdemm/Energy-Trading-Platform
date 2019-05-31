@@ -17,9 +17,9 @@ server.on("listening", function() {
   console.log("ok, server is running");
 });
 
-//const gadgetRoute = require("./routes/gadget.routes");
-/*const panelRoute = require("./routes/panel.routes");
-const accountRoute = require("./routes/account.routes");*/
+const gadgetRoute = require("./routes/gadget.routes");
+const panelRoute = require("./routes/panel.routes");
+const accountRoute = require("./routes/account.routes");
 
 //Configure mongoose's promise to global promise
 mongoose.Promise = global.Promise;
