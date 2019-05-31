@@ -1,44 +1,49 @@
-/*const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const passport = require("passport");
 const router = require("express").Router();
 const auth = require("../auth");
 const User = mongoose.model("User");
-const userDao = require("../../dao/userDao");
-
-//GET users
-router.route("/").get(function(req, res) {
-  User.find(function(err, users) {
-    res.json(users);
-  });
-});
 
 //POST new user route (optional, everyone has access)
-//routes.post('/', () => res.status(200).send('blub'))
+router.post("/", auth.optional, (req, res, next) => {
+  console.log("I'm here");
+  const {
+    body: { user }
+  } = req;
 
-router.post("/", auth.optional, async (req, res, next) => {
-  try {
-    let user = req.body;
-    console.log(user);
-    finalUser = new User(user);
+  console.log(user);
 
-    finalUser.setPassword(user.password);
-
-    savedUser = await finalUser.save().then(result => {
-      console.log(result);
-      res.send({ user: finalUser });
+  if (!user.email) {
+    return res.status(422).json({
+      errors: {
+        email: "is required"
+      }
     });
-  } catch (e) {
-    console.log(e);
-    res.send(false);
   }
+
+  if (!user.password) {
+    return res.status(422).json({
+      errors: {
+        password: "is required"
+      }
+    });
+  }
+
+  const finalUser = new User(user);
+
+  finalUser.setPassword(user.password);
+
+  return finalUser
+    .save()
+    .then(() => res.json({ user: finalUser.toAuthJSON() }));
 });
 
 //POST login route (optional, everyone has access)
-//router.post("/login", auth.optional, function(req, res, next) {
-router.post("/login", function(req, res, next) {
-  let user = req.body.user;
+router.post("/login", auth.optional, (req, res, next) => {
+  const {
+    body: { user }
+  } = req;
   console.log(user);
-
   if (!user.email) {
     return res.status(422).json({
       errors: {
@@ -75,17 +80,17 @@ router.post("/login", function(req, res, next) {
   )(req, res, next);
 });
 
-//GET current route (required, only authenticated user have access)
-router.get("/current", auth.required, async function(req, res, next) {
-  let id = req.payload.id;
+//GET current route (required, only authenticated User have access)
+router.get("/current", auth.required, (req, res, next) => {
+  console.log("I'm here");
+  const id = req.payload._id;
+  return User.findById(id).then(user => {
+    if (!user) {
+      return res.sendStatus(400);
+    }
 
-  const user = await User.findById(id);
-  if (!user) {
-    console.log("no user found");
-    return res.sendStatus(400);
-  }
-  console.log("user found");
-  return res.json({ user: user.toAuthJSON() });
+    return res.json({ user: user.toAuthJSON() });
+  });
 });
 
-module.exports = router;*/
+module.exports = router;

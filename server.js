@@ -4,13 +4,22 @@ const express = require("express"),
   cors = require("cors"),
   mongoose = require("mongoose"),
   config = require("./DB"),
-  errorHandler = require("errorhandler"),
-  passport = require("passport");
+  passport = require("passport"),
+  errorHandler = require("errorhandler");
 
-const gadgetRoute = require("./routes/gadget.routes");
-const panelRoute = require("./routes/panel.routes");
-const accountRoute = require("./routes/account.routes");
-const authRoute = require("./routes/authentication.routes");
+var http = require("http");
+
+var server = http.createServer(function(req, res) {
+  res.end("test");
+});
+
+server.on("listening", function() {
+  console.log("ok, server is running");
+});
+
+//const gadgetRoute = require("./routes/gadget.routes");
+/*const panelRoute = require("./routes/panel.routes");
+const accountRoute = require("./routes/account.routes");*/
 
 //Configure mongoose's promise to global promise
 mongoose.Promise = global.Promise;
@@ -42,16 +51,40 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   }
 );
 
-// Initializing our Middleware
-app.use(passport.initialize());
-app.use("/api", authRoute);
-
 // Use Routes
-app.use("/panels", panelRoute);
-app.use("/gadgets", gadgetRoute);
-app.use("/accounts", accountRoute);
+//app.use("/panels", panelRoute);
+//app.use("/gadgets", gadgetRoute);
+//app.use("/accounts", accountRoute);
+
+require("./models/User");
+require("./config/passport");
+app.use(require("./routes"));
 
 // error handlers
+if (!isProduction) {
+  app.use((err, req, res) => {
+    res.status(err.status || 500);
+
+    res.json({
+      errors: {
+        message: err.message,
+        error: err
+      }
+    });
+  });
+}
+
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+
+  res.json({
+    errors: {
+      message: err.message,
+      error: {}
+    }
+  });
+});
+
 // Catch unauthorised errors
 app.use(function(err, req, res, next) {
   if (err.name === "UnauthorizedError") {
@@ -69,7 +102,7 @@ var version = process.env.version || "1.0";
 
 const port = process.env.PORT || 4000;
 
-const server = app.listen(port, function() {
+server = app.listen(port, function() {
   console.log("Listening on port " + port);
   console.log("Version " + version);
 });

@@ -4,38 +4,27 @@ const jwt = require("jsonwebtoken");
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  username: {
-    type: String
-    //required: true
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String
+    },
+    email: String,
+    hash: String,
+    salt: String,
+    isProducer: Boolean,
+    address: {
+      type: String,
+      unique: true
+    },
+    token: String,
+    country: String,
+    rating: Number
   },
-  email: {
-    type: String,
-    unique: true
-    //required: true
-  },
-  hash: String,
-  salt: String,
-  isProducer: {
-    type: Boolean
-    //required: true
-  },
-  address: {
-    type: String,
-    unique: true
-  },
-  token: String,
-  country: String,
-  rating: Number
-});
-
-/*userSchema.pre('save', async function(next){
-  const user = this;
-  const hash = await bcrypt.hash(this.password);
-  this.password = hash;
-  next();
-})*/
+  {
+    collection: "users"
+  }
+);
 
 UserSchema.methods.setPassword = function(password) {
   this.salt = crypto.randomBytes(16).toString("hex");
