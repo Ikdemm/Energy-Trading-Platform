@@ -51,14 +51,15 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   }
 );
 
-// Use Routes
-//app.use("/panels", panelRoute);
-//app.use("/gadgets", gadgetRoute);
-//app.use("/accounts", accountRoute);
-
+//Middleware
 require("./models/User");
 require("./config/passport");
 app.use(require("./routes"));
+
+//Use Routes
+app.use("/panels", panelRoute);
+app.use("/gadgets", gadgetRoute);
+app.use("/accounts", accountRoute);
 
 // error handlers
 if (!isProduction) {
