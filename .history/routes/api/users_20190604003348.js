@@ -3,10 +3,10 @@ const passport = require("passport");
 const router = require("express").Router();
 const auth = require("../auth");
 const User = mongoose.model("User");
-const jwt = require("jsonwebtoken");
 
 //POST new user route (optional, everyone has access)
 router.post("/", auth.optional, (req, res, next) => {
+  console.log("I'm here");
   const {
     body: { user }
   } = req;
@@ -40,7 +40,10 @@ router.post("/", auth.optional, (req, res, next) => {
 
 //POST login route (optional, everyone has access)
 router.post("/login", auth.optional, (req, res, next) => {
-  user = req.body;
+  // const {
+  //   body: { user }
+  // } = req;
+  let user = req.body;
   console.log(user);
   if (!user.email) {
     return res.status(422).json({
@@ -67,10 +70,9 @@ router.post("/login", auth.optional, (req, res, next) => {
       }
 
       if (passportUser) {
-        console.log(passportUser);
         const user = passportUser;
         user.token = passportUser.generateJWT();
-        console.log(user.token);
+
         return res.json({ user: user.toAuthJSON() });
       }
 
@@ -81,6 +83,7 @@ router.post("/login", auth.optional, (req, res, next) => {
 
 //GET current route (required, only authenticated User have access)
 router.get("/current", auth.required, (req, res, next) => {
+  console.log("I'm here");
   const id = req.payload._id;
   return User.findById(id).then(user => {
     if (!user) {
