@@ -44,7 +44,7 @@ module.exports =  {
   },
 
   link: async function(idOffer,Buyer,Seller,addrCoin,res){
-  res.json(MatchingContract.link(idOffer,Buyer,Seller,addrCoin,{from: consumerAccount, gas:300000000 }));
+  res.json(MatchingContract.setCoinAddr(idOffer,Buyer,Seller,addrCoin,{from: consumerAccount, gas:300000000 }));
   },
   
   getCurrentMatchingUser: async function(res){

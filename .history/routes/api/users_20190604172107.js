@@ -84,9 +84,11 @@ router.get("/current", auth.required, (req, res, next) => {
   const id = req.payload._id;
   return User.findById(id).then(user => {
     if (!user) {
+      console.log(id);
       return res.sendStatus(400);
     }
-    return res.json({ user });
+
+    return res.json({ user: user.toAuthJSON() });
   });
 });
 

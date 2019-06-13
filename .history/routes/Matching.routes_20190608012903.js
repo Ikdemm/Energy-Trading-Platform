@@ -97,14 +97,11 @@ MatchingRoutes.post("/setCoinAddr", (req, res) => {
 
 MatchingRoutes.post("/link", (req, res) => {
   try {
-    console.log(JSON.stringify(req.body));
-    let id = req.body.idOffer;
-    let buyer = req.body.Buyer;
-    let seller = req.body.Seller;
+    JSON.parse(req.body);
     service.link(
-      id,
-      buyer,
-      seller,
+      req.body.idOffer,
+      req.body.Buyer,
+      req.body.Seller,
       TecContractAddress,
       res
     );

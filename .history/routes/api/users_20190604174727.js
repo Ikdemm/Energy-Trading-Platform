@@ -82,10 +82,12 @@ router.post("/login", auth.optional, (req, res, next) => {
 //GET current route (required, only authenticated User have access)
 router.get("/current", auth.required, (req, res, next) => {
   const id = req.payload._id;
+  console.log(req.payload);
   return User.findById(id).then(user => {
     if (!user) {
       return res.sendStatus(400);
     }
+    console.log(user);
     return res.json({ user });
   });
 });

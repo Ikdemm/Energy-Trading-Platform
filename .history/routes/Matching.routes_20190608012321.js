@@ -65,6 +65,7 @@ MatchingRoutes.get("/getDemandById", (req, res) => {
   }
 });
 
+
 MatchingRoutes.get("/getOfferByAddr", (req, res) => {
   try {
     console.log(JSON.stringify(req.body));
@@ -98,13 +99,10 @@ MatchingRoutes.post("/setCoinAddr", (req, res) => {
 MatchingRoutes.post("/link", (req, res) => {
   try {
     console.log(JSON.stringify(req.body));
-    let id = req.body.idOffer;
-    let buyer = req.body.Buyer;
-    let seller = req.body.Seller;
     service.link(
-      id,
-      buyer,
-      seller,
+      req.body.idOffer,
+      req.body.Buyer,
+      req.body.Seller,
       TecContractAddress,
       res
     );
