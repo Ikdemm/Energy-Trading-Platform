@@ -7,6 +7,7 @@ let Gadget = require("../models/Gadget.js");
 let gadgetDao = require("../dao/gadgetDao.js");
 // Defined store route
 gadgetRoutes.post("/add", async (req, res) => {
+  console.log(req.body);
   gadget = await gadgetDao.save(req.body);
   console.log(gadget);
   res.send(gadget);

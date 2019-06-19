@@ -12,7 +12,7 @@ let Gadget = new Schema(
       type: String,
       required: true
     },
-    userAddress: {
+    owner: {
       type: String,
       required: true
     },
