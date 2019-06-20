@@ -10,7 +10,7 @@ let Panel = new Schema(
     installationDate: Date,
     STCOutput: Number,
     state: Boolean,
-    userAddress: String
+    owner: String
   },
   {
     collection: "panels"
