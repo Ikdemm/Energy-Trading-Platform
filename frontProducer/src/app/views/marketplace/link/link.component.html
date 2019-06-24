@@ -1,0 +1,52 @@
+<div class="example-container">
+
+        
+          <h3> thank you for linking with the offer n°{{data?.idOffer}}</h3>
+          <br>
+          <h6> <p>
+          Accepting this offer you will receive <b>{{data?.offer?.tokenNumber}}</b> tokens of electricity 
+          Each token costs <b>{{data?.offer?.unitPrice}}</b> 
+          </p> </h6>
+          <h6> Which brings it to a total cost of <b>{{total}}</b> TND</h6>
+          <br>
+          <label for="cardsIcons"> Select a payment method : </label>
+          <form [formGroup]="linkwith" novalidate>
+          <div name="cardsIcons">
+          <label>
+              <input type="radio" name="test" value="small" checked>
+              <img src="../../../../assets/img/offers/edinar.png">
+          </label>
+            
+          <label>
+              <input type="radio" name="test" value="small" >
+              <img src="../../../../assets/img/offers/visa.png">
+          </label>
+          
+          <label>
+              <input type="radio" name="test" value="small" >
+              <img src="../../../../assets/img/offers/paypal.png">
+          </label>
+          <br>
+          <br>
+          <br>  
+        </div>
+        <label for="passCard" style="margin-right: 2em"> Please enter your card password : </label>
+              <mat-form-field>
+                <input
+                  required
+                  name="passCard"
+                  matInput
+                  type="password"
+                  placeholder="Card password"
+                  formControlName="passCard"
+                  #passCard
+                />
+              </mat-form-field>
+              <br>
+              <br>
+        <button style="float: right;
+                      text-align: center;
+                      width: 10em" 
+        type="button" class="btn btn-dark" (click)="link(data.idOffer)"> Confirm</button>   
+        </form>
+</div>

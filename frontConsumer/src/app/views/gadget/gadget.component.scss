@@ -1,0 +1,85 @@
+.example-card {
+  max-width: 400px;
+}
+
+.gadget-photo {
+  height: 12em;
+  object-fit: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.bottom-cards {
+  position: -webkit-sticky;
+  position: fixed;
+  z-index: 1;
+  height: 4em;
+  right: 5em;
+  bottom: 2em;
+}
+
+.total-card {
+  background-image: linear-gradient(to right, #f83600 0%, #f97923 100%);
+  color: white;
+  overflow: auto;
+  margin-left: 1em;
+}
+
+.add-button {
+  background-color: #130f40;
+  background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+  color: white;
+  text-align: center;
+  height: 4em;
+}
+
+.add-button:hover,
+.add-button:focus {
+  background-image: linear-gradient(315deg, #02001b 0%, #000000 74%);
+  background-color: black;
+}
+
+.gadget-card {
+  margin-top: 1em;
+  margin-bottom: 0.5em !important;
+}
+
+.delete-button {
+  background-color: #ff0844;
+  color: white;
+  border: solid 1px #ff0844;
+  margin-left: 1em;
+}
+
+.delete-button:hover {
+  color: #ff0844;
+  background-color: white;
+  border: solid 1px #ff0844;
+}
+
+.edit-button {
+  background-color: #009980;
+  color: white;
+  border: solid 1px #009980;
+  padding: 0 2em;
+}
+
+.edit-button:hover {
+  background-color: white;
+  color: #009980;
+  border: solid 1px #009980;
+}
+
+.material-icon {
+  size: 0.5em;
+}
+
+.gadget-icon {
+  padding-top: 0.2em;
+  padding-right: 0.2em;
+}
+
+.activation-button {
+  padding-top: 1.5em;
+  padding-left: 3em;
+}

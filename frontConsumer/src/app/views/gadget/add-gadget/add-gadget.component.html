@@ -1,0 +1,85 @@
+<div class="example-container">
+  <h4>Add an Appliance</h4>
+
+  <!--Form-->
+
+  <form [formGroup]="addForm" novalidate>
+    <div class="form-group">
+      <input matInput placeholder="Name" formControlName="gadget_name" #name />
+    </div>
+
+    <!--<div *ngIf="addForm.controls['gadget_name'].touched && (addForm.controls['gadget_name'].dirty || addForm.controls['gadget_name'].touched)" class="alert alert-danger">
+    <div *ngIf="addForm.controls['gadget_name'].errors.required">
+      <p class="error-msg">Name is required.</p>
+    </div>
+  </div>-->
+
+    <mat-form-field>
+      <mat-select placeholder="Type" #type>
+        <mat-option value="Television">Television</mat-option>
+        <mat-option value="Air Conditioner">Air Conditioner</mat-option>
+        <mat-option value="Fridge">Fridge</mat-option>
+        <mat-option value="Bulb">Bulb</mat-option>
+        <mat-option value="Clothes Iron">Clothes Iron</mat-option>
+        <mat-option value="Coffee Machine">Coffee Machine</mat-option>
+        <mat-option value="Dishwasher">Dishwasher</mat-option>
+        <mat-option value="Dyer">Dyer</mat-option>
+        <mat-option value="Fan">Fan</mat-option>
+        <mat-option value="Hair Dryer">Hair Dryer</mat-option>
+        <mat-option value="Hair Iron">Hair Iron</mat-option>
+        <mat-option value="Hob">Hob</mat-option>
+        <mat-option value="Laptop">Laptop</mat-option>
+        <mat-option value="Microwave">Microwave</mat-option>
+        <mat-option value="Oven">Oven</mat-option>
+        <mat-option value="Printer">Printer</mat-option>
+        <mat-option value="Radio">Radio</mat-option>
+        <mat-option value="Sewing Machine">Sewing Machine</mat-option>
+        <mat-option value="Smoke Detector">Smoke Detector</mat-option>
+        <mat-option value="Toaster">Toaster</mat-option>
+        <mat-option value="Vacuum">Vacuum</mat-option>
+        <mat-option value="Toaster">Washing Machine</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Wattage" #watt />
+      <span matSuffix>W</span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Amp" #amp />
+      <span matSuffix>A</span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Voltage" #volt />
+      <span matSuffix>V</span>
+    </mat-form-field>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="
+          addGadget(
+            name.value,
+            type.value,
+            watt.value,
+            amp.value,
+            volt.value,
+            true
+          )
+        "
+      >
+        Confirm
+      </button>
+
+      <button class="btn btn-danger" (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <!--/Form-->
+</div>

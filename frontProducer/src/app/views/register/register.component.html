@@ -1,0 +1,153 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <form>
+                <h1>Register</h1>
+                <p class="text-muted">Create your account</p>
+
+                <!-- username input -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="icon-user"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    placeholder="Enter a Username"
+                    autocomplete="username"
+                    required
+                    #username
+                  />
+                </div>
+
+                <!-- email input -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    placeholder="Enter email"
+                    [(ngModel)]="credentials.email"
+                    autocomplete="email"
+                    #email
+                    required
+                  />
+                </div>
+
+                <!-- password input -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="icon-lock"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="Password"
+                    [(ngModel)]="credentials.password"
+                    autocomplete="new-password"
+                    #password
+                    required
+                  />
+                </div>
+
+                <!-- password verification input -->
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="icon-lock"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Repeat password"
+                    autocomplete="new-password"
+                    required
+                  />
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <!-- Country input -->
+                    <div class="input-group mb-3">
+                      <mat-form-field>
+                        <mat-label>Country</mat-label>
+                        <mat-select #country>
+                          <mat-option
+                            *ngFor="let country of countries"
+                            [value]="country.name"
+                          >
+                            {{ country.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <!-- Producer Input -->
+                  <div class="col-md-6">
+                    <div class="input-group mb-4">
+                      <mat-checkbox
+                        color="primary"
+                        (click)="changeRole()"
+                        #checkbox
+                      >
+                        I'm a producer
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-block btn-success"
+                  (click)="
+                    register(
+                      email.value,
+                      password.value,
+                      username.value,
+                      country.value
+                    )
+                  "
+                >
+                  Create Account
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="card-footer p-4">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-block btn-facebook" type="button">
+                  <span>facebook</span>
+                </button>
+              </div>
+              <div class="col-6">
+                <button
+                  class="btn btn-block btn-twitter"
+                  type="button"
+                  (click)="getAccounts()"
+                >
+                  <span>twitter</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

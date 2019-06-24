@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let gadget of gadgets">
+      <mat-card class="gadget-card">
+        <mat-card-header>
+          <div mat-card-avatar class="gadget-header-image">
+            <img
+              src="../../../assets/img/gadgets/gadget-icon.png"
+              width="50px"
+              class="gadget-icon"
+            />
+          </div>
+          <mat-card-title>{{ gadget.name }}</mat-card-title>
+          <mat-card-subtitle>{{ gadget.type }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          class="gadget-photo"
+          mat-card-image
+          [src]="getImage(gadget)"
+          alt=""
+        />
+        <mat-card-content>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <table>
+                  <tr>
+                    <td>
+                      <b>Amperage:</b>
+                    </td>
+                    <td>{{ gadget.amp }}A</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b>Voltage:</b>
+                    </td>
+                    <td>{{ gadget.volt }}V</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b>Wattage:</b>
+                    </td>
+                    <td>{{ gadget.watt }}kwh</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="col-md-6" class="activation-button">
+                <i class="material-icons desactivated-icon">power_off</i>
+                <mat-slide-toggle
+                  [checked]="gadget.state"
+                  (toggleChange)="changeState(gadget)"
+                  class="state-button"
+                  #toggleState
+                ></mat-slide-toggle>
+                <i class="material-icons activated-icon">power</i>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <button
+          class="delete-button"
+          mat-raised-button
+          (click)="deleteGadget(gadget._id)"
+        >
+          Remove
+          <i class="material-icons">delete</i>
+        </button>
+        <button
+          class="edit-button"
+          mat-raised-button
+          (click)="openEditGadget(gadget)"
+        >
+          Edit
+          <i class="material-icons">edit</i>
+        </button>
+        <!--<button mat-raised-button>SKIP</button>-->
+      </mat-card>
+    </div>
+
+    <button class="add-button" mat-raised-button (click)="openAddGadget()">
+      <i class="material-icons">add_circle</i>
+    </button>
+
+    <mat-card class="total-card">
+      <h4>Total: {{ total }} kwh</h4>
+    </mat-card>
+  </div>
+</div>

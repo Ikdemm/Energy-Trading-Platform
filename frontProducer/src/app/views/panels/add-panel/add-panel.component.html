@@ -1,0 +1,63 @@
+<div class="example-container">
+  <h4>Add a Panel</h4>
+
+  <!--Form-->
+
+  <form [formGroup]="addPanelForm" novalidate>
+    <mat-form-field>
+      <input matInput placeholder="Number" #number />
+    </mat-form-field>
+
+    <!--<div *ngIf="addForm.controls['gadget_name'].touched && (addForm.controls['gadget_name'].dirty || addForm.controls['gadget_name'].touched)" class="alert alert-danger">
+      <div *ngIf="addForm.controls['gadget_name'].errors.required">
+        <p class="error-msg">Name is required.</p>
+      </div>
+    </div>-->
+
+    <mat-form-field>
+      <input matInput placeholder="manufacturer" #manufacturer />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="cells Number" #cellsNumber />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Installation Date"
+        #installationDate
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="STC Output" #STCOutput />
+    </mat-form-field>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="
+          addPanel(
+            number.value,
+            manufacturer.value,
+            cellsNumber.value,
+            installationDate.value,
+            STCOutput.value
+          )
+        "
+      >
+        Confirm
+      </button>
+      <button class="btn btn-danger" (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <!--/Form-->
+</div>

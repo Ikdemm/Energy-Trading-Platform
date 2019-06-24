@@ -1,0 +1,57 @@
+<div class="example-container">
+  <h4>Edit Panel</h4>
+
+  <!--Form-->
+
+  <form [formGroup]="editPanelForm" novalidate>
+    <mat-form-field>
+      <input matInput [value]="panel.number" #number />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.manufacturer" #manufacturer />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.cellsNumber" #cellsNumber />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [value]="panel.installationDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.STCOutput" #STCOutput />
+    </mat-form-field>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="
+          updatePanel(
+            number.value,
+            manufacturer.value,
+            cellsNumber.value,
+            picker.value,
+            STCOutput.value
+          )
+        "
+      >
+        Confirm
+      </button>
+
+      <button class="btn btn-danger" (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <!--/Form-->
+</div>

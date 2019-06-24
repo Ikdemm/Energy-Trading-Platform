@@ -1,0 +1,63 @@
+<mat-card>
+  <table class="table table-striped table-responsive-md btn-table">
+    <thead>
+      <tr>
+        <th>Panel number</th>
+        <th>manifacturer</th>
+        <th>Number of cells</th>
+        <th>Installed on</th>
+        <th>STCOutput</th>
+        <th>State</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let panel of panels">
+        <td>{{ panel.number }}</td>
+        <td>{{ panel.manufacturer }}</td>
+        <td>{{ panel.cellsNumber }}</td>
+        <td>{{ panel.installationDate | date: "fullDate" }}</td>
+        <td>{{ panel.STCOutput }}</td>
+        <td>
+          <mat-slide-toggle
+            [checked]="panel.state"
+            (toggleChange)="changeState(panel)"
+            #toggleState
+          ></mat-slide-toggle>
+          <!--<div
+            class="box"
+            [style.background-color]="getColor(panel)"
+            (click)="changeState(panel)"
+          ></div>-->
+        </td>
+        <td>
+          <mat-chip-list>
+            <mat-chip (click)="openEditPanel(panel)"
+              ><i class="material-icons panel-icons">edit</i></mat-chip
+            >
+            <mat-chip (click)="deletePanel(panel._id)"
+              ><i class="material-icons panel-icons">remove</i></mat-chip
+            >
+          </mat-chip-list>
+          <!--<button mat-button class="material-icons" (click)="openEditPanel()"><i class="material-icons">edit</i></button>
+        <button mat-button class="material-icons" (click)="deletePanel()"><i class="material-icons">remove</i></button>-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="bottom-cards row">
+    <div class="button-add">
+      <button class="add-button" mat-raised-button (click)="openAddPanel()">
+        <i class="material-icons">add_circle</i>
+      </button>
+    </div>
+
+    <div class="crad-total">
+      <mat-card class="total-card">
+        <h4>Total: {{ total }} kwh</h4>
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

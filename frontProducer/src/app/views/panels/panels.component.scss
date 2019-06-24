@@ -1,0 +1,43 @@
+.state {
+  padding-top: 2em;
+  margin-top: 2em;
+}
+
+.box {
+  width: 1px;
+  height: 1px;
+  padding: 1em;
+}
+
+.bottom-cards {
+  position: -webkit-sticky;
+  position: fixed;
+  z-index: 1;
+  height: 4em;
+  right: 5em;
+  bottom: 2em;
+}
+
+.total-card {
+  background-image: linear-gradient(to right, #f83600 0%, #f97923 100%);
+  color: white;
+  overflow: auto;
+  margin-left: 1em;
+}
+
+.add-button {
+  background-color: #130f40;
+  background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+  color: white;
+  text-align: center;
+  height: 4em;
+}
+
+.add-button:hover,
+.add-button:focus {
+  background-image: linear-gradient(315deg, #02001b 0%, #000000 74%);
+  background-color: black;
+}
+panel-icons {
+  font-size: 1.5em;
+}

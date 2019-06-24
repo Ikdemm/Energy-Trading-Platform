@@ -1,0 +1,50 @@
+    <div class="example-container">
+        <h4>Enter your card infomation</h4>
+        <mat-form-field>
+          <mat-select placeholder="Select your card type">
+              <mat-option value="option">Edinar</mat-option>
+              <mat-option value="option">Visa</mat-option>
+              <mat-option value="option">PayPAl</mat-option>
+            </mat-select>
+        </mat-form-field>
+      <mat-form-field>
+          <input
+            type="text"
+            placeholder="Card Number"
+          />
+      </mat-form-field>
+      <mat-form-field>
+          <input
+            type="text"
+            placeholder="Owner name"
+          />
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              type="password"
+              placeholder="Card password"
+            />
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              type="password"
+              placeholder="Repeat password"
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Outline form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="closeModal()">
+          Confirm
+        </button>
+        <button class="btn btn-danger" (click)="closeModal()">
+          Cancel
+        </button>
+    </div>
+  

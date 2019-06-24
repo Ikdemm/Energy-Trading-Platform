@@ -1,0 +1,79 @@
+<div class="example-container">
+  <h4>Add an Offer</h4>
+
+  <form [formGroup]="addOffer" novalidate>
+    <mat-form-field>
+      <input
+        matInput
+        fixed value= "{{user?.address}}"
+        formControlName="addrSeller"
+        #addrSeller
+      />
+    </mat-form-field>
+    <mat-form-field>
+        <input
+          matInput
+          fixed value= "{{user?.username}}"
+          formControlName="nameSeller"
+          #nameSeller
+        />
+      </mat-form-field>
+      <mat-form-field>
+          <input
+            matInput
+            placeholder="unitPrice"
+            formControlName="unitPrice"
+            value="5"
+            #unitPrice
+          />
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              matInput
+              placeholder="tokenNumber"
+              formControlName="tokenNumber"
+              value="20"
+              #tokenNumber
+            />
+          </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="datetime-local"
+        placeholder="debut"
+        formControlName="debut"
+        value="2019-06-08T00:00"
+        #debut
+      />
+      <!-- <mat-datepicker #dateFrom></mat-datepicker> -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="datetime-local"
+        placeholder="end"
+        formControlName="end"
+        value="2019-06-09T00:00"
+        #end
+      />
+      <!-- <mat-datepicker #dateTo></mat-datepicker> -->
+    </mat-form-field>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="
+          submitOffer(addrSeller.value, nameSeller.value, unitPrice.value, tokenNumber.value , debut.value , end.value)
+        "
+      >
+        Confirm
+      </button>
+
+      <button class="btn btn-danger" (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
