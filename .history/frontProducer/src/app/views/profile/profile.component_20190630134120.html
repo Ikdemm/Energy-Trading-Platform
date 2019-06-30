@@ -1,0 +1,128 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-11 mx-auto">
+      <div class="card-group">
+        <div
+          class="card text-white py-5 d-md-down-none"
+          style="width:44%"
+          id="info"
+        >
+          <div class="card-body text-center">
+            <img
+              src="../../../assets/img/avatars/ikdem.jpg"
+              class="profile-pic"
+            />
+            <hr />
+            <h2>{{ user.username }}</h2>
+
+            <h4 *ngIf="user.isProducer" class="role">Producer</h4>
+            <h4 *ngIf="!user.isProducer" class="role">Consumer</h4>
+            <hr />
+            <h3>{{ balance }} Tokens</h3>
+          </div>
+        </div>
+
+        <div class="card p-4">
+          <div class="card-body">
+            <form>
+              <table>
+                <tr>
+                  <td>
+                    Username:
+                  </td>
+                  <td colspan="2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="username"
+                      [value]="user.username"
+                      required
+                      #username
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Email
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="email"
+                      [value]="user.email"
+                      required
+                      #email
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Address
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="address"
+                      [value]="user.address"
+                      readonly="readonly"
+                      id="address"
+                      #address
+                    />
+                    <!--<button class="btn" [ngxClipboard]="address">
+                      copy address
+                    </button>-->
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Country:
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="country"
+                      [value]="user.country"
+                      required
+                      #country
+                    />
+                  </td>
+                </tr>
+              </table>
+
+              <button
+                type="submit"
+                class="btn btn-primary px-4"
+                id="edit-button"
+                (click)="
+                  editProfile(username.value, email.value, country.value)
+                "
+              >
+                Edit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+        <div class="col-md-6" style="display:inline">
+          <h1 class="form-signin-heading" style="color: rgb(59, 58, 58)">Your profile</h1><br>
+          <h4 style="color: rgba(82, 141, 235, 0.698);float: left; width: 20%;">Name : </h4><h6 style="color: rgba(57, 57, 58, 0.89);">{{user?.username}}</h6><br>
+          <h4 style="color: rgba(82, 141, 235, 0.698);float: left; width: 20%;">Email : </h4><h6 style="color: rgba(57, 57, 58, 0.89)">{{user?.email}}</h6><br>
+          <h4 style="color: rgba(82, 141, 235, 0.698);float: left; width: 20%;">Address : </h4><h6 style="color: rgba(57, 57, 58, 0.89)">{{user?.address}}</h6><br>
+          <h4 style="color: rgba(82, 141, 235, 0.698);float: left; width: 20%;">From : </h4><h6 style="color: rgba(57, 57, 58, 0.89)">{{user?.country}}</h6><br>
+          <h4 style="color: rgba(82, 141, 235, 0.698);float: left; width: 35%;">Token balance : </h4><h6 style="color: rgba(57, 57, 58, 0.89)">{{balance}}</h6><br>
+        </div>
+      </div>
+      <div class="floating-div" style="float: right; margin-right: 5em; margin-bottom: 5em">
+        <button class="add-button" mat-raised-button (click)="openFinancial()">
+          <i class="material-icons">credit_card</i>
+          Card Info
+        </button>
+      </div>-->
+</div>

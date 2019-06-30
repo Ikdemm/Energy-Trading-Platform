@@ -1,0 +1,98 @@
+<form class="form-inline md-form form-sm">
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input
+        class="form-control form-control-sm ml-4 w-99 search-input"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="Search"
+        aria-label="Search"
+        mdbInput
+      />
+    </div>
+    <div class="col-md-6">
+      <div class="row col-md-12">
+        <div class="col-md-2">
+          <label style="padding-top: 5px; color: slategray;">Sort by</label>
+        </div>
+        <div class="col-md-8">
+            <ng-select
+            [items]="categories"
+            bindLabel="name"
+            [(ngModel)]="selectedCategorie"
+            [ngModelOptions]="{ standalone: true }"
+            #categorie
+          >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<hr />
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let offer of Offers | filter: searchText; let i=index">
+     
+   <div id="card" class="card booking-card">
+      <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+        <li class="list-inline-item mr-0">
+          <div class="card-body">
+            <h4 class="card-title font-weight-bold">
+              <a class="text-primary">Owner : {{ offer.nameSeller }}</a>
+            </h4>
+
+            <p class="mb-2 font-weight-bold">Unit Price: {{ offer.unitPrice }}</p>
+            <p class="mb-2 font-weight-bold">Tokens Number: {{ offer.tokenNumber }}</p>
+
+
+            <p class="card-text">Offer Rating: 5 </p>
+            <hr class="my-4" />
+            <p class="lead"><strong>Availability : </strong></p>
+            <ul class="list-unstyled">
+              <li>
+                <div class="chip mr-0">Date From: {{ offer.debut }}</div>
+              </li>
+              <li>
+                <div class="chip mr-0 ">Date To: {{ offer.end }}</div>
+              </li>
+            </ul>
+          </div>
+
+          <button
+            href="#"
+            type="button"
+            class="btn btn-flat btn btn-primary"
+            style="margin: 0.5cm ;width: 3cm ;"
+            (click)="openLink(i)"
+          >
+            <i class="fa fa-link card-icon"> </i>
+            Link n°{{i}}
+          </button>
+          <button
+            href="#"
+            type="button"
+            class="btn btn-flat btn btn-warning"
+            style="margin: 0.5cm ;width: 3cm ;"
+          >
+            <i class="fa fa-bars card-icon"></i>
+            Details
+          </button>
+        </li>
+      </ul>
+    </div> 
+  
+  </div>
+</div>
+<button class="add-button" mat-raised-button (click)="openAddOffer()">
+  <div class="row">
+    <div class="col-md-2">
+      <i class="material-icons button-icon">add_circle</i>
+    </div>
+    <div class="col-md-2">
+      <h5 class="button-text">Add Offer</h5>
+    </div>
+  </div>
+</button>

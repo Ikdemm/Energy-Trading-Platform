@@ -8,7 +8,6 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
 import { LinkComponent } from './link/link.component';
 import {AuthenticationService, UserDetails } from '../../services/authentication.service';
 
-
 @Component({
   selector: 'app-marketplace',
   templateUrl: './marketplace.component.html',
