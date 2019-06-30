@@ -35,25 +35,25 @@ exports.deployMatching = function deployMatching() {
           });
           TecContract.transferFrom(
             producerAccount,
-            "0x49afC8DEa6628E6e40F42d367E6c4e0c189069eE",
+            "0x1C346c48640c435c52226553b606Ac5Aa6C7e4ff",
             1000000000,
             { from: producerAccount, gas: 300000000 }
           );
           TecContract.transferFrom(
             producerAccount,
-            "0xB1444F4E57491260A2C59458d36E1Da63cbFE624",
+            "0x27b5391Ceac07Bbf084F01C387A60487D72Bb7Cb",
             1000000000,
             { from: producerAccount, gas: 300000000 }
           );
           TecContract.transferFrom(
             producerAccount,
-            "0x1E1ecaB94754cc2D2c8B8D8A38C2F0c4adEbF2E9",
+            "0x22147F375334BBae1247bC8338f1Ab8055601757",
             1000000000,
             { from: producerAccount, gas: 300000000 }
           );
           TecContract.transferFrom(
             producerAccount,
-            "0x04bce989CA6bfCfF00144212cC429ec3ad255F03",
+            "0xFF96c42713E5a8421e6562F903758831e172810B",
             1000000000,
             { from: producerAccount, gas: 300000000 }
           );

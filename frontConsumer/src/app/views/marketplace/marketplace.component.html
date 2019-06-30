@@ -38,6 +38,7 @@
     class="col-md-4"
     *ngFor="let offer of Offers | filter: searchText; let i = index"
   >
+  <div *ngIf="offer.unitPrice != 0"> 
     <div id="card" class="card booking-card">
       <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
         <li class="list-inline-item mr-0">
@@ -88,6 +89,7 @@
         </li>
       </ul>
     </div>
+  </div>
   </div>
 </div>
 <button class="add-button" mat-raised-button (click)="openAddOffer()">
