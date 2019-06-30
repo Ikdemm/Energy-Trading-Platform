@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Ariana",
+    "code": "a4fe-e5bd-2beb-3c32"
+  },
+  {
+    "name": "Béja",
+    "code": "4a1d-8a0c-e60f-d373"
+  },
+  {
+    "name": "Ben Arous",
+    "code": "7412-860c-9cdc-0bab"
+  },
+  {
+    "name": "Bizerte",
+    "code": "5d43-8094-622d-93cd"
+  },
+  {
+    "name": "Gabès",
+    "code": "5a52-6b44-495c-5587"
+  },
+  {
+    "name": "Gafsa",
+    "code": "a104-0dfc-d9a2-3606"
+  },
+  {
+    "name": "Jendouba",
+    "code": "6659-75a1-78ae-60d8"
+  },
+  {
+    "name": "Kairouan",
+    "code": "3551-3af7-42e5-1b29"
+  },
+  {
+    "name": "Kasserine",
+    "code": "0503-4bc4-8cb8-ba3f"
+  },
+  {
+    "name": "Kebili",
+    "code": "e241-cd00-e7ca-370b"
+  },
+  {
+    "name": "Kef",
+    "code": "7c55-e47d-9b48-78a9"
+  },
+  {
+    "name": "Mahdia",
+    "code": "4d59-3c17-1d61-2ada"
+  },
+  {
+    "name": "Manouba",
+    "code": "a889-7a8b-f3b3-c7ba"
+  },
+  {
+    "name": "Medenine",
+    "code": "3467-74f0-71b5-5b67"
+  },
+  {
+    "name": "Monastir",
+    "code": "c2c9-9a05-ebfa-7847"
+  },
+  {
+    "name": "Nabeul",
+    "code": "0669-472f-8b2f-d3bc"
+  },
+  {
+    "name": "Sfax",
+    "code": "2e08-1784-5b22-e905"
+  },
+  {
+    "name": "Sidi Bouzid",
+    "code": "fa70-5f27-fb6f-e382"
+  },
+  {
+    "name": "Siliana",
+    "code": "424b-786d-b660-33e9"
+  },
+  {
+    "name": "Sousse",
+    "code": "8a4a-7823-eb99-a48f"
+  },
+  {
+    "name": "Tataouine",
+    "code": "34ea-7803-048e-a15a"
+  },
+  {
+    "name": "Tozeur",
+    "code": "3b03-c1bf-c606-5a41"
+  },
+  {
+    "name": "Tunis",
+    "code": "f36c-d11d-196b-cca9"
+  },
+  {
+    "name": "Zaghouen",
+    "code": "bd60-eb74-5545-7b6b"
+  }
+]

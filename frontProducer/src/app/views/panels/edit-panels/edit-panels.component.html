@@ -5,15 +5,23 @@
 
   <form [formGroup]="editPanelForm" novalidate>
     <mat-form-field>
-      <input matInput [value]="panel.number" #number />
-    </mat-form-field>
-
-    <mat-form-field>
       <input matInput [value]="panel.manufacturer" #manufacturer />
     </mat-form-field>
 
     <mat-form-field>
       <input matInput [value]="panel.cellsNumber" #cellsNumber />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.tilt" #tilt />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.tilt" #tilt />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [value]="panel.capacity" #capacity />
     </mat-form-field>
 
     <mat-form-field>
@@ -24,10 +32,6 @@
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [value]="panel.STCOutput" #STCOutput />
     </mat-form-field>
 
     <div class="form-group">

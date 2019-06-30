@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { AccountsService } from "../../services/accounts.service";
 import { User } from "../../models/user.modal";
 import { Account } from "../../models/account.model";
+import data from "../../../assets/json/panels.json";
 
 @Component({
   selector: "app-dashboard",
@@ -20,7 +21,9 @@ export class RegisterComponent {
     private accountsService: AccountsService
   ) {}
 
-  governorates = [
+  governorates = [];
+
+  /*governorates = [
     "Ariana",
     "Béja",
     "Ben Arous",
@@ -45,7 +48,7 @@ export class RegisterComponent {
     "Tozeur",
     "Tunis",
     "Zaghouen"
-  ];
+  ];*/
 
   credentials: TokenPayload = {
     email: "",
@@ -164,6 +167,10 @@ export class RegisterComponent {
   }
 
   async ngOnInit() {
+    data.forEach(element => {
+      this.governorates.push(element.name);
+    });
+    console.log(this.governorates);
     this.isProducer = false;
     await new Promise((resolve, reject) => setTimeout(resolve, 1500));
   }

@@ -1,6 +1,5 @@
 export class Panel {
   _id?: string;
-  number: number;
   manufacturer: String;
   cellsNumber: number;
   installationDate: Date;
@@ -8,24 +7,25 @@ export class Panel {
   owner: String;
   tilt: number;
   azimuth: number;
+  capacity: number;
 
   Panel(
-    number: number,
     manufacturer: String,
     cellsNumber: number,
     installationDate: Date,
     tilt: number,
     azimuth: number,
     state: boolean,
+    capacity: number,
     owner: String
   ) {
-    this.number = number;
     this.manufacturer = manufacturer;
     this.cellsNumber = cellsNumber;
     this.installationDate = installationDate;
     this.tilt = tilt;
     this.azimuth = azimuth;
     this.state = state;
+    this.capacity = capacity;
     this.owner = owner;
   }
 }

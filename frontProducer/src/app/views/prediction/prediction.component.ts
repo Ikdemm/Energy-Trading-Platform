@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { WeatherService } from "../../services/weather.service";
 import { ProductionService } from "../../services/production.service";
 import { Chart } from "chart.js";
+import { AuthenticationService } from "../../services/authentication.service";
+import { User } from "../../models/user.modal";
+import panels from "../../../assets/json/panels.json";
 @Component({
   selector: "app-prediction",
   templateUrl: "./prediction.component.html",
@@ -10,15 +13,35 @@ import { Chart } from "chart.js";
 export class PredictionComponent implements OnInit {
   chart = [];
   production = [];
+  code;
+  current: User = new User();
   constructor(
     private _weather: WeatherService,
-    private _production: ProductionService
+    private _production: ProductionService,
+    private authenticationService: AuthenticationService
   ) {}
 
+  getCurrent() {
+    this.authenticationService.dashboard().subscribe(
+      data => {
+        console.log(data);
+        this.current = data.user;
+        console.log(this.current);
+        let code = panels.filter(element => {
+          return element.name == this.current.governorate;
+        });
+        this.code = code[0].code;
+        console.log(this.code);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
   power() {
-  
     /******************Power*********************/
-    this._production.dailyForecast().subscribe(res => {
+    this._production.getProduction(this.code).subscribe(res => {
       const powerEstim = res["estimated_actuals"].map(res => res.pv_estimate);
       const dateEstim = res["estimated_actuals"].map(res => res.period_end);
 
@@ -60,10 +83,10 @@ export class PredictionComponent implements OnInit {
           }
         }
       });
-    });    
+    });
   }
 
-  weather(){
+  weather() {
     /******************Temperature*********************/
 
     this._weather.dailyForecast().subscribe(res => {
@@ -134,5 +157,6 @@ export class PredictionComponent implements OnInit {
 
   ngOnInit() {
     this.weather();
+    this.getCurrent();
   }
 }

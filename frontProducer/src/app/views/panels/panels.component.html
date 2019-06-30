@@ -2,35 +2,30 @@
   <table class="table table-striped table-responsive-md btn-table">
     <thead>
       <tr>
-        <th>Panel number</th>
-        <th>manifacturer</th>
+        <th>Manifacturer</th>
         <th>Number of cells</th>
         <th>Installed on</th>
-        <th>tilt</th>
-        <th>azimuth</th>
+        <th>Tilt</th>
+        <th>Azimuth</th>
+        <th>Capacity</th>
         <th>State</th>
       </tr>
     </thead>
 
     <tbody>
       <tr *ngFor="let panel of panels">
-        <td>{{ panel.number }}</td>
         <td>{{ panel.manufacturer }}</td>
         <td>{{ panel.cellsNumber }}</td>
         <td>{{ panel.installationDate | date: "fullDate" }}</td>
         <td>{{ panel.tilt }}</td>
         <td>{{ panel.azimuth }}</td>
+        <td>{{ panel.capacity }}</td>
         <td>
           <mat-slide-toggle
             [checked]="panel.state"
             (toggleChange)="changeState(panel)"
             #toggleState
           ></mat-slide-toggle>
-          <!--<div
-            class="box"
-            [style.background-color]="getColor(panel)"
-            (click)="changeState(panel)"
-          ></div>-->
         </td>
         <td>
           <mat-chip-list>

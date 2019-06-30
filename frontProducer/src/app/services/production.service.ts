@@ -16,10 +16,22 @@ const proxyurl = "https://cors-anywhere.herokuapp.com/";
 export class ProductionService {
   constructor(private _http: HttpClient) {}
 
-  dailyForecast() {
+  getProduction(code) {
     return this._http.get(
       proxyurl +
-        "http://api.solcast.com.au/rooftop_sites/936d-9323-05e2-afe8/estimated_actuals?format=json&api_key=jR4Iuw5LMiT-2QtINhWXis28TvqaobNt",
+        "http://api.solcast.com.au/rooftop_sites/" +
+        code +
+        "/estimated_actuals?format=json&api_key=jR4Iuw5LMiT-2QtINhWXis28TvqaobNt",
+      httpOptions
+    );
+  }
+
+  dailyForecast(code) {
+    return this._http.get(
+      proxyurl +
+        "http://api.solcast.com.au/rooftop_sites/" +
+        code +
+        "/estimated_actuals?format=json&api_key=jR4Iuw5LMiT-2QtINhWXis28TvqaobNt",
       httpOptions
     );
   }

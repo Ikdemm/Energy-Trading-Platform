@@ -10,6 +10,7 @@ import { EditPanelsComponent } from "./edit-panels/edit-panels.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatSelectModule } from "@angular/material";
+import { ProductionService } from "../../services/production.service";
 @NgModule({
   declarations: [PanelsComponent, AddPanelComponent, EditPanelsComponent],
   imports: [
@@ -23,6 +24,7 @@ import { MatSelectModule } from "@angular/material";
     HttpClientModule,
     MatSelectModule
   ],
+  providers: [ProductionService],
   entryComponents: [AddPanelComponent, EditPanelsComponent]
 })
 export class PanelsModule {}

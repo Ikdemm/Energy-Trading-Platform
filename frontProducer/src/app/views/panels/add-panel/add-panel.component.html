@@ -5,21 +5,23 @@
 
   <form [formGroup]="addPanelForm" novalidate>
     <mat-form-field>
-      <input matInput placeholder="Number" #number />
-    </mat-form-field>
-
-    <!--<div *ngIf="addForm.controls['gadget_name'].touched && (addForm.controls['gadget_name'].dirty || addForm.controls['gadget_name'].touched)" class="alert alert-danger">
-      <div *ngIf="addForm.controls['gadget_name'].errors.required">
-        <p class="error-msg">Name is required.</p>
-      </div>
-    </div>-->
-
-    <mat-form-field>
-      <input matInput placeholder="manufacturer" #manufacturer />
+      <input matInput placeholder="Manufacturer" #manufacturer />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="cells Number" #cellsNumber />
+      <input matInput placeholder="Cells Number" #cellsNumber />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Tilt" #tilt />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Azimuth" #azimuth />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Capacity" #capacity />
     </mat-form-field>
 
     <mat-form-field>
@@ -33,21 +35,18 @@
       <mat-datepicker touchUi #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="STC Output" #STCOutput />
-    </mat-form-field>
-
     <div class="form-group">
       <button
         type="submit"
         class="btn btn-primary"
         (click)="
           addPanel(
-            number.value,
             manufacturer.value,
             cellsNumber.value,
             installationDate.value,
-            STCOutput.value
+            tilt.value,
+            azimuth.value,
+            capacity.value
           )
         "
       >

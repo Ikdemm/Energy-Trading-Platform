@@ -6,6 +6,8 @@ import { EditPanelsComponent } from "./edit-panels/edit-panels.component";
 import { MatDialog } from "@angular/material";
 import { AuthenticationService } from "../../services/authentication.service";
 import { User } from "../../models/user.modal";
+import { ProductionService } from "../../services/production.service";
+import panels from "../../../assets/json/panels.json";
 
 @Component({
   selector: "app-panels",
@@ -16,12 +18,16 @@ export class PanelsComponent implements OnInit {
   panels: Panel[];
   total = 0;
   current: User = new User();
+  code;
 
   constructor(
     private panelService: PanelsService,
     public dialog: MatDialog,
-    private authenticationService: AuthenticationService
-  ) {}
+    private authenticationService: AuthenticationService,
+    private productionService: ProductionService
+  ) {
+    console.log(panels);
+  }
 
   ngOnInit() {
     this.getCurrent();
@@ -59,7 +65,6 @@ export class PanelsComponent implements OnInit {
     panel.state = !panel.state;
     let obj = new Panel();
     obj._id = panel._id;
-    obj.number = panel.number;
     obj.manufacturer = panel.manufacturer;
     obj.cellsNumber = panel.cellsNumber;
     obj.tilt = panel.tilt;
@@ -76,8 +81,12 @@ export class PanelsComponent implements OnInit {
   getTotal() {
     this.total = 0;
     this.panels.forEach(element => {
+      console.log(element);
       if (element.state) {
-        this.total += element.tilt;
+        this.productionService.getProduction(this.code).subscribe(data => {
+          this.total += data.estimated_actuals[0].pv_estimate;
+          console.log(this.total);
+        });
       }
     });
     console.log(this.total);
@@ -91,6 +100,12 @@ export class PanelsComponent implements OnInit {
         this.current = data.user;
         console.log(this.current);
         this.getListPanels();
+        console.log(panels);
+        let code = panels.filter(element => {
+          return element.name == this.current.governorate;
+        });
+        this.code = code[0].code;
+        console.log(this.code);
       },
       err => {
         console.error(err);
@@ -100,12 +115,10 @@ export class PanelsComponent implements OnInit {
 
   getListPanels() {
     this.panelService.getPanels().subscribe((data: Panel[]) => {
-      console.log(data);
       this.panels = data;
       let current = this.current;
       let panels = [];
       data.forEach(function(panel) {
-        console.log(panel);
         if (panel.owner === current.address) {
           panels.push(panel);
         }

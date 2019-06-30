@@ -44,15 +44,23 @@ export class AddPanelComponent implements OnInit {
     this.addPanelForm = this.fb.group({});
   }
 
-  addPanel(number, manufacturer, cellsNumber, installationDate, tilt) {
+  addPanel(
+    manufacturer,
+    cellsNumber,
+    installationDate,
+    tilt,
+    azimuth,
+    capacity
+  ) {
     let obj = new Panel();
-    (obj.number = number),
-      (obj.manufacturer = manufacturer),
+    (obj.manufacturer = manufacturer),
       (obj.cellsNumber = cellsNumber),
       (obj.installationDate = installationDate),
       (obj.tilt = tilt),
+      (obj.azimuth = azimuth),
       (obj.state = true),
-      (obj.owner = this.current.address);
+      (obj.owner = this.current.address),
+      (obj.capacity = capacity);
 
     console.log(this.current.address);
 

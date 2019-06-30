@@ -19,7 +19,8 @@ const UserSchema = new Schema(
     },
     token: String,
     state: String,
-    rating: Number
+    rating: Number,
+    governorate: String
   },
   {
     collection: "users"
