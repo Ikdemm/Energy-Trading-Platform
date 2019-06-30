@@ -44,13 +44,13 @@ export class AddPanelComponent implements OnInit {
     this.addPanelForm = this.fb.group({});
   }
 
-  addPanel(number, manufacturer, cellsNumber, installationDate, STCOutput) {
+  addPanel(number, manufacturer, cellsNumber, installationDate, tilt) {
     let obj = new Panel();
     (obj.number = number),
       (obj.manufacturer = manufacturer),
       (obj.cellsNumber = cellsNumber),
       (obj.installationDate = installationDate),
-      (obj.STCOutput = STCOutput),
+      (obj.tilt = tilt),
       (obj.state = true),
       (obj.owner = this.current.address);
 

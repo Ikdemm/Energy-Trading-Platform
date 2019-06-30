@@ -8,8 +8,9 @@ let Panel = new Schema(
     manufacturer: String,
     cellsNumber: Number,
     installationDate: Date,
-    STCOutput: Number,
     state: Boolean,
+    tilt: Number,
+    azimuth: Number,
     owner: String
   },
   {

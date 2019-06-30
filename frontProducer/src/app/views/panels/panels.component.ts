@@ -62,10 +62,10 @@ export class PanelsComponent implements OnInit {
     obj.number = panel.number;
     obj.manufacturer = panel.manufacturer;
     obj.cellsNumber = panel.cellsNumber;
-    obj.STCOutput = panel.STCOutput;
+    obj.tilt = panel.tilt;
+    obj.azimuth = panel.azimuth;
     obj.installationDate = panel.installationDate;
     obj.state = panel.state;
-
     this.panelService.updatePanel(obj).subscribe(data => {
       console.log(data);
     });
@@ -77,7 +77,7 @@ export class PanelsComponent implements OnInit {
     this.total = 0;
     this.panels.forEach(element => {
       if (element.state) {
-        this.total += element.STCOutput;
+        this.total += element.tilt;
       }
     });
     console.log(this.total);

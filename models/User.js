@@ -18,7 +18,7 @@ const UserSchema = new Schema(
       unique: true
     },
     token: String,
-    country: String,
+    state: String,
     rating: Number
   },
   {

@@ -29,14 +29,14 @@ export class EditPanelsComponent implements OnInit {
     this.editPanelForm = this.fb.group({});
   }
 
-  updatePanel(number, manufacturer, cellsNumber, installationDate, STCOutput) {
+  updatePanel(number, manufacturer, cellsNumber, installationDate, tilt) {
     let obj = new Panel();
     obj._id = this.panel._id;
     obj.number = number;
     obj.manufacturer = manufacturer;
     obj.cellsNumber = cellsNumber;
     obj.installationDate = installationDate;
-    obj.STCOutput = STCOutput;
+    obj.tilt = tilt;
     obj.state = true;
 
     this.panelService.updatePanel(obj).subscribe(data => {

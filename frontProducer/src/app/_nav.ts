@@ -57,5 +57,10 @@ export const navItems: NavData[] = [
     name: "Panels",
     url: "/Panels",
     icon: "icon-layers"
+  },
+  {
+    name: "Gadgets",
+    url: "/Gadgets",
+    icon: "icon-layers"
   }
 ];

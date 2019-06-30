@@ -6,9 +6,9 @@
         <th>manifacturer</th>
         <th>Number of cells</th>
         <th>Installed on</th>
-        <th>STCOutput</th>
+        <th>tilt</th>
+        <th>azimuth</th>
         <th>State</th>
-        <th></th>
       </tr>
     </thead>
 
@@ -18,7 +18,8 @@
         <td>{{ panel.manufacturer }}</td>
         <td>{{ panel.cellsNumber }}</td>
         <td>{{ panel.installationDate | date: "fullDate" }}</td>
-        <td>{{ panel.STCOutput }}</td>
+        <td>{{ panel.tilt }}</td>
+        <td>{{ panel.azimuth }}</td>
         <td>
           <mat-slide-toggle
             [checked]="panel.state"

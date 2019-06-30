@@ -25,15 +25,14 @@ export class ProfileComponent {
     private prof: ProfileService,
     private router: Router,
     public dialog: MatDialog,
-    private userService: UserService
-  ) //private _clipboardService: ClipboardService
-  {}
+    private userService: UserService //private _clipboardService: ClipboardService
+  ) {}
 
   goToRegister() {
     this.router.navigateByUrl("dashboard");
   }
 
-  editProfile(username, email, country) {
+  editProfile(username, email, governorate) {
     let obj = new User();
     // Unmodifiable attributes
     obj._id = this.user._id;
@@ -43,7 +42,7 @@ export class ProfileComponent {
     // new attributes
     obj.username = username;
     obj.email = email;
-    obj.country = country;
+    obj.governorate = governorate;
     console.log(obj);
     this.userService.editUser(obj);
   }

@@ -3,17 +3,24 @@ import { Injectable } from "@angular/core";
 
 const httpOptions = {
   headers: new HttpHeaders()
-  .append("Access-Control-Allow-Origin","*")
-  .append("Access-Control-Allow-Methods","GET,POST,PATCH,DELETE,PUT,OPTIONS")
-  .append("Access-Control-Allow-Headers","Origin, Content-Type, X-Auth-Token, content-type")
- };
+    .append("Access-Control-Allow-Origin", "*")
+    .append("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,PUT,OPTIONS")
+    .append(
+      "Access-Control-Allow-Headers",
+      "Origin, Content-Type, X-Auth-Token, content-type"
+    )
+};
 
- const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 @Injectable()
 export class ProductionService {
   constructor(private _http: HttpClient) {}
 
   dailyForecast() {
-    return this._http.get(proxyurl+"http://api.solcast.com.au/rooftop_sites/936d-9323-05e2-afe8/estimated_actuals?format=json&api_key=jR4Iuw5LMiT-2QtINhWXis28TvqaobNt", httpOptions);
+    return this._http.get(
+      proxyurl +
+        "http://api.solcast.com.au/rooftop_sites/936d-9323-05e2-afe8/estimated_actuals?format=json&api_key=jR4Iuw5LMiT-2QtINhWXis28TvqaobNt",
+      httpOptions
+    );
   }
 }

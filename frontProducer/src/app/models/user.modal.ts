@@ -3,7 +3,7 @@ export class User {
   email: string;
   password: string;
   username: string;
-  country: string;
+  governorate: string;
   rating: number;
   address: string;
   isProducer: boolean;

@@ -94,9 +94,13 @@ export const routes: Routes = [
         loadChildren: "./views/panels/panels.module#PanelsModule"
       },
       {
-        path: 'Profile',
-        loadChildren: './views/profile/profile.module#ProfileModule'
-      }     
+        path: "Gadgets",
+        loadChildren: "./views/gadget/gadget.module#GadgetModule"
+      },
+      {
+        path: "Profile",
+        loadChildren: "./views/profile/profile.module#ProfileModule"
+      }
     ]
   },
   { path: "**", component: P404Component }

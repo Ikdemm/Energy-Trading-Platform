@@ -7,7 +7,6 @@ import { Router } from "@angular/router";
 import { AccountsService } from "../../services/accounts.service";
 import { User } from "../../models/user.modal";
 import { Account } from "../../models/account.model";
-import data from "../../../assets/json/countries.json";
 
 @Component({
   selector: "app-dashboard",
@@ -21,7 +20,32 @@ export class RegisterComponent {
     private accountsService: AccountsService
   ) {}
 
-  countries: any = data;
+  governorates = [
+    "Ariana",
+    "Béja",
+    "Ben Arous",
+    "Bizerte",
+    "Gabès",
+    "Gafsa",
+    "Jendouba",
+    "Kairouan",
+    "Kasserine",
+    "Kebili",
+    "Kef",
+    "Mahdia",
+    "Manouba",
+    "Medenine",
+    "Monastir",
+    "Nabeul",
+    "Sfax",
+    "Sidi Bouzid",
+    "Siliana",
+    "Sousse",
+    "Tatouine",
+    "Tozeur",
+    "Tunis",
+    "Zaghouen"
+  ];
 
   credentials: TokenPayload = {
     email: "",
@@ -39,13 +63,13 @@ export class RegisterComponent {
   }
 
   // ------------------ Registration methods ------------------------ //
-  register(email, password, username, country) {
+  register(email, password, username, governorate) {
     let user = new User();
     user.email = email;
     user.password = password;
     user.username = username;
     user.isProducer = this.isProducer;
-    user.country = country;
+    user.governorate = governorate;
     user.rating = 0;
     user.address = "";
 
@@ -59,7 +83,7 @@ export class RegisterComponent {
           password: user.password,
           username: user.username,
           isProducer: this.isProducer,
-          country: user.country,
+          governorate: user.governorate,
           rating: 0,
           address: availableAddress
         }

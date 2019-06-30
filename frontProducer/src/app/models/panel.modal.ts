@@ -4,16 +4,18 @@ export class Panel {
   manufacturer: String;
   cellsNumber: number;
   installationDate: Date;
-  STCOutput: number;
   state: boolean;
   owner: String;
+  tilt: number;
+  azimuth: number;
 
   Panel(
     number: number,
     manufacturer: String,
     cellsNumber: number,
     installationDate: Date,
-    STCOutput: number,
+    tilt: number,
+    azimuth: number,
     state: boolean,
     owner: String
   ) {
@@ -21,7 +23,8 @@ export class Panel {
     this.manufacturer = manufacturer;
     this.cellsNumber = cellsNumber;
     this.installationDate = installationDate;
-    this.STCOutput = STCOutput;
+    this.tilt = tilt;
+    this.azimuth = azimuth;
     this.state = state;
     this.owner = owner;
   }
