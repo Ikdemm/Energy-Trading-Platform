@@ -6,6 +6,7 @@ module.exports = {
     return base.save(panel, panelModel);
   },
   update: function(panel, id) {
+    console.log(panel), console.log(id);
     return base.update(panel, id, panelModel);
   },
   findById: function(id) {

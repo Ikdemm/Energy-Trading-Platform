@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Gadget } from "../../../models/gadget.modal";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { GadgetsService } from "../../../services/gadgets.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialogRef } from "@angular/material";
@@ -12,50 +12,58 @@ import { MatDialogRef } from "@angular/material";
 })
 export class EditGadgetComponent implements OnInit {
   gadget: Gadget;
-  //gottenGadget: any;
-  editGadgetForm: FormGroup;
+  @ViewChild("f") editGadgetForm: NgForm;
+
+  types = [
+    "Television",
+    "Air Conditioner",
+    "Fridge",
+    "Bulb",
+    "Clothes Iron",
+    "Coffee Machine",
+    "Dishwasher",
+    "Dyer",
+    "Fan",
+    "Hair Dryer",
+    "Hair Iron",
+    "Hob",
+    "Laptop",
+    "Microwave",
+    "Oven",
+    "Printer",
+    "Radio",
+    "Sewing Machine",
+    "Smoke Detector",
+    "Toaster",
+    "Vacuum",
+    "Washing Machine",
+    "Other"
+  ];
 
   constructor(
-    private fb: FormBuilder,
     private gadgetService: GadgetsService,
     private route: ActivatedRoute,
     private router: Router,
     public dialogRef: MatDialogRef<EditGadgetComponent>
-  ) {
-    this.createForm();
-  }
+  ) {}
 
-  ngOnInit() {
-    /*this.route.params.subscribe(params => {
-      this.gs.editGadget(params['id']).subscribe(res => {
-        this.gottenGadget = res;
-      });
-    });*/
-  }
+  ngOnInit() {}
 
-  createForm() {
-    this.editGadgetForm = this.fb.group({});
-  }
-
-  updateGadget(name, type, watt, amp, volt, state) {
+  updateGadget() {
     let obj = new Gadget();
     obj._id = this.gadget._id;
-    obj.name = name;
-    obj.type = type;
-    obj.watt = watt;
-    obj.amp = amp;
-    obj.volt = volt;
-    obj.state = state;
+    obj.manufacturer = this.editGadgetForm.value.manufacturer;
+    obj.type = this.editGadgetForm.value.type;
+    obj.power = this.editGadgetForm.value.power;
+    obj.amperage = this.editGadgetForm.value.amperage;
+    obj.voltage = this.editGadgetForm.value.voltage;
+    obj.state = this.editGadgetForm.value.state;
 
     this.gadgetService.updateGadget(obj).subscribe(data => {
       console.log(data);
     });
 
-    this.dialogRef.close();
-    /*this.route.params.subscribe(params => {
-      this.gs.updateGadget(name, type, watt, amp, volt, state, params["id"]);
-      this.router.navigate(["gadget"]);
-    });*/
+    this.closeModal();
   }
 
   closeModal() {

@@ -9,17 +9,7 @@ export class GadgetsService {
 
   constructor(private http: HttpClient) {}
 
-  addGadget(name, type, watt, amp, volt, state, owner) {
-    const obj = {
-      name: name,
-      type: type,
-      watt: watt,
-      amp: amp,
-      volt: volt,
-      state: state,
-      owner: owner
-    };
-    console.log(obj);
+  addGadget(obj) {
     this.http
       .post(`${this.uri}/add`, obj)
       .subscribe(res => console.log("Gadget added successfuly"));

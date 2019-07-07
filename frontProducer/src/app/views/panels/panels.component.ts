@@ -34,14 +34,14 @@ export class PanelsComponent implements OnInit {
   }
 
   openAddPanel(): void {
-    const dialogRef = this.dialog.open(AddPanelComponent, { width: "250px" });
+    const dialogRef = this.dialog.open(AddPanelComponent, { width: "500px" });
     dialogRef.afterClosed().subscribe(res => {
       this.getListPanels();
     });
   }
 
   openEditPanel(panel: Panel): void {
-    const dialogRef = this.dialog.open(EditPanelsComponent, { width: "250px" });
+    const dialogRef = this.dialog.open(EditPanelsComponent, { width: "500px" });
     dialogRef.componentInstance.panel = panel;
     dialogRef.afterClosed().subscribe(res => {
       this.getListPanels();

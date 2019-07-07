@@ -1,76 +1,91 @@
-<div class="example-container">
-  <h4>Edit the Appliance</h4>
+<div class="container">
+  <h4>Edit an Appliance</h4>
 
   <!--Form-->
 
-  <form>
-    <mat-form-field>
-      <input matInput [value]="gadget.name" #name />
-    </mat-form-field>
+  <form (ngSubmit)="updateGadget()" #f="ngForm">
+    <div class="form-group">
+      <label for="manufacturer">Manufacturer</label>
+      <input
+        type="text"
+        id="manufacturer"
+        name="manufacturer"
+        class="form-control"
+        required
+        ngModel
+        placeholder="{{ gadget.manufacturer }}"
+        #manufacturer
+      />
+    </div>
 
-    <mat-form-field>
-      <mat-select [value]="gadget.type" #type>
-        <mat-option value="Television">Television</mat-option>
-        <mat-option value="Air Conditioner">Air Conditioner</mat-option>
-        <mat-option value="Fridge">Fridge</mat-option>
-        <mat-option value="Bulb">Bulb</mat-option>
-        <mat-option value="Clothesiron">Clothes Iron</mat-option>
-        <mat-option value="Coffee Machine">Coffee Machine</mat-option>
-        <mat-option value="Dishwasher">Dishwasher</mat-option>
-        <mat-option value="Dyer">Dyer</mat-option>
-        <mat-option value="Fan">Fan</mat-option>
-        <mat-option value="Hair Dryer">Hair Dryer</mat-option>
-        <mat-option value="Hair Iron">Hair Iron</mat-option>
-        <mat-option value="Hob">Hob</mat-option>
-        <mat-option value="Laptop">Laptop</mat-option>
-        <mat-option value="Microwave">Microwave</mat-option>
-        <mat-option value="Oven">Oven</mat-option>
-        <mat-option value="Printer">Printer</mat-option>
-        <mat-option value="Radio">Radio</mat-option>
-        <mat-option value="Sewing Machine">Sewing Machine</mat-option>
-        <mat-option value="Smoke Detector">Smoke Detector</mat-option>
-        <mat-option value="Toaster">Toaster</mat-option>
-        <mat-option value="Vacuum">Vacuum</mat-option>
-        <mat-option value="Washing Machine">Washing Machine</mat-option>
-        <mat-option value="Other">Other</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="power">Power</label>
+      <input
+        type="number"
+        id="power"
+        name="power"
+        class="form-control"
+        required
+        ngModel
+        placeholder="{{ gadget.power }}"
+        #power
+      />
+      <span class="help-block" *ngIf="power.value > 180"
+        >Power should be between 0 and 180°</span
+      >
+    </div>
 
-    <mat-form-field>
-      <input matInput [value]="gadget.watt" #watt />
-      <span matSuffix>W</span>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="amperage">amperage</label>
+      <input
+        type="number"
+        id="amperage"
+        name="amperage"
+        class="form-control"
+        required
+        ngModel
+        placeholder="{{ gadget.amperage }}"
+        #amperage
+      />
+      <span class="help-block" *ngIf="amperage.value > 200"
+        >Very big amperage value</span
+      >
+    </div>
 
-    <mat-form-field>
-      <input matInput [value]="gadget.amp" #amp />
-      <span matSuffix>A</span>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="voltage">Voltage</label>
+      <input
+        type="number"
+        id="voltage"
+        name="voltage"
+        class="form-control"
+        required
+        ngModel
+        placeholder="{{ gadget.voltage }}"
+        #voltage
+      />
+      <span class="help-block" *ngIf="voltage.value > 180"
+        >Very big voltage value</span
+      >
+    </div>
 
-    <mat-form-field>
-      <input matInput [value]="gadget.volt" #volt />
-      <span matSuffix>V</span>
-    </mat-form-field>
+    <div class="form-group">
+      <label>Type</label>
+      <ng-select
+        [items]="types"
+        placeholder="{{ gadget.type }}"
+        [(ngModel)]="selectedType"
+        name="type"
+      >
+      </ng-select>
+    </div>
 
-    <button
-      type="submit"
-      class="btn btn-primary"
-      (click)="
-        updateGadget(
-          name.value,
-          type.value,
-          watt.value,
-          amp.value,
-          volt.value,
-          true
-        )
-      "
-    >
-      Confirm
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+      Submit
     </button>
     <button class="btn btn-danger" (click)="closeModal()">
       Cancel
     </button>
   </form>
-
   <!--/Form-->
 </div>

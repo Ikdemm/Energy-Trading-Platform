@@ -3,19 +3,18 @@
     <thead>
       <tr>
         <th>Manifacturer</th>
-        <th>Number of cells</th>
         <th>Installed on</th>
         <th>Tilt</th>
         <th>Azimuth</th>
         <th>Capacity</th>
         <th>State</th>
+        <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
       <tr *ngFor="let panel of panels">
         <td>{{ panel.manufacturer }}</td>
-        <td>{{ panel.cellsNumber }}</td>
         <td>{{ panel.installationDate | date: "fullDate" }}</td>
         <td>{{ panel.tilt }}</td>
         <td>{{ panel.azimuth }}</td>
@@ -36,8 +35,6 @@
               ><i class="material-icons panel-icons">remove</i></mat-chip
             >
           </mat-chip-list>
-          <!--<button mat-button class="material-icons" (click)="openEditPanel()"><i class="material-icons">edit</i></button>
-        <button mat-button class="material-icons" (click)="deletePanel()"><i class="material-icons">remove</i></button>-->
         </td>
       </tr>
     </tbody>

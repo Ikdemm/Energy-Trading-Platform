@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { PanelsService } from "../../../services/panels.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialogRef } from "@angular/material";
+import { User } from "../../../models/user.modal";
 
 @Component({
   selector: "app-edit-panels",
@@ -12,6 +13,7 @@ import { MatDialogRef } from "@angular/material";
 })
 export class EditPanelsComponent implements OnInit {
   editPanelForm: FormGroup;
+  current: User = new User();
 
   panel: Panel;
 
@@ -38,6 +40,7 @@ export class EditPanelsComponent implements OnInit {
     obj.tilt = tilt;
     obj.azimuth = azimuth;
     obj.state = true;
+    console.log(obj);
 
     this.panelService.updatePanel(obj).subscribe(data => {
       console.log(data);

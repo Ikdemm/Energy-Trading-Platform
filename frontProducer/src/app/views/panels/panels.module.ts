@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatSelectModule } from "@angular/material";
 import { ProductionService } from "../../services/production.service";
+import { DpDatePickerModule } from "ng2-date-picker";
+
 @NgModule({
   declarations: [PanelsComponent, AddPanelComponent, EditPanelsComponent],
   imports: [
@@ -22,7 +24,8 @@ import { ProductionService } from "../../services/production.service";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    DpDatePickerModule
   ],
   providers: [ProductionService],
   entryComponents: [AddPanelComponent, EditPanelsComponent]

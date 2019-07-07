@@ -29,8 +29,8 @@ panelRoutes.route("/find/:id").get(function(req, res) {
 });
 
 panelRoutes.post("/update", async (req, res) => {
-  console.log(req.body);
-  let test = await panelDao.update(req.body, req.body.id);
+  console.log(req.body._id);
+  let test = await panelDao.update(req.body, req.body._id);
   console.log(test);
   res.send(true);
 });

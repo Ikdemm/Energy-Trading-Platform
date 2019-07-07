@@ -10,7 +10,7 @@
               class="gadget-icon"
             />
           </div>
-          <mat-card-title>{{ gadget.name }}</mat-card-title>
+          <mat-card-title>{{ gadget.manufacturer }}</mat-card-title>
           <mat-card-subtitle>{{ gadget.type }}</mat-card-subtitle>
         </mat-card-header>
         <img
@@ -28,19 +28,19 @@
                     <td>
                       <b>Amperage:</b>
                     </td>
-                    <td>{{ gadget.amp }}A</td>
+                    <td>{{ gadget.amperage }}A</td>
                   </tr>
                   <tr>
                     <td>
                       <b>Voltage:</b>
                     </td>
-                    <td>{{ gadget.volt }}V</td>
+                    <td>{{ gadget.voltage }}V</td>
                   </tr>
                   <tr>
                     <td>
                       <b>Wattage:</b>
                     </td>
-                    <td>{{ gadget.watt }}kwh</td>
+                    <td>{{ gadget.power }}kwh</td>
                   </tr>
                 </table>
               </div>
@@ -74,16 +74,21 @@
           Edit
           <i class="material-icons">edit</i>
         </button>
-        <!--<button mat-raised-button>SKIP</button>-->
       </mat-card>
     </div>
 
-    <button class="add-button" mat-raised-button (click)="openAddGadget()">
-      <i class="material-icons">add_circle</i>
-    </button>
+    <div class="bottom-cards row">
+      <div class="button-add">
+        <button class="add-button" mat-raised-button (click)="openAddGadget()">
+          <i class="material-icons">add_circle</i>
+        </button>
+      </div>
 
-    <mat-card class="total-card">
-      <h4>Total: {{ total }} kwh</h4>
-    </mat-card>
+      <div class="crad-total">
+        <mat-card class="total-card">
+          <h4>Total: {{ total }} kwh</h4>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>

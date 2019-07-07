@@ -1,61 +1,76 @@
-<div class="example-container">
+<div class="container">
   <h4>Add a Panel</h4>
 
   <!--Form-->
 
-  <form [formGroup]="addPanelForm" novalidate>
-    <mat-form-field>
-      <input matInput placeholder="Manufacturer" #manufacturer />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Cells Number" #cellsNumber />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Tilt" #tilt />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Azimuth" #azimuth />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Capacity" #capacity />
-    </mat-form-field>
-
-    <mat-form-field>
+  <form (ngSubmit)="addPanel()" #f="ngForm">
+    <div class="form-group">
+      <label for="manufacturer">Manufacturer</label>
       <input
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Installation Date"
-        #installationDate
+        type="text"
+        id="manufacturer"
+        name="manufacturer"
+        class="form-control"
+        required
+        ngModel
+        #manufacturer
       />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #picker></mat-datepicker>
-    </mat-form-field>
+    </div>
 
     <div class="form-group">
-      <button
-        type="submit"
-        class="btn btn-primary"
-        (click)="
-          addPanel(
-            manufacturer.value,
-            cellsNumber.value,
-            installationDate.value,
-            tilt.value,
-            azimuth.value,
-            capacity.value
-          )
-        "
+      <label for="capacity">Capacity</label>
+      <input
+        type="number"
+        id="capacity"
+        name="capacity"
+        class="form-control"
+        required
+        ngModel
+        #capacity
+      />
+      <span class="help-block" *ngIf="capacity.value > 1000"
+        >Capacity should be between 0 and 1000 kW</span
       >
-        Confirm
-      </button>
-      <button class="btn btn-danger" (click)="closeModal()">
-        Cancel
-      </button>
     </div>
+
+    <div class="form-group">
+      <label for="capacity">Azimuth</label>
+      <input
+        type="number"
+        id="azimuth"
+        name="azimuth"
+        class="form-control"
+        required
+        ngModel
+        #azimuth
+      />
+      <span class="help-block" *ngIf="azimuth.value > 359"
+        >Azimuth should be between 0 and 360°</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="tilt">Tilt</label>
+      <input
+        type="number"
+        id="tilt"
+        name="tilt"
+        class="form-control"
+        required
+        ngModel
+        #tilt
+      />
+      <span class="help-block" *ngIf="tilt.value > 180"
+        >Azimuth should be between 0 and 180°</span
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+      Submit
+    </button>
+    <button class="btn btn-danger" (click)="closeModal()">
+      Cancel
+    </button>
   </form>
 
   <!--/Form-->

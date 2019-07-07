@@ -1,0 +1,94 @@
+[
+  {
+    "id": 0,
+    "name": "Television"
+  },
+  {
+    "id": 1,
+    "name": "Air Conditioner"
+  },
+  {
+    "id": 2,
+    "name": "Fridge"
+  },
+  {
+    "id": 3,
+    "name": "Bulb"
+  },
+  {
+    "id": 4,
+    "name": "Clothes Iron"
+  },
+  {
+    "id": 5,
+    "name": "Coffee Machine"
+  },
+  {
+    "id": 6,
+    "name": "Dishwasher"
+  },
+  {
+    "id": 7,
+    "name": "Dyer"
+  },
+  {
+    "id": 8,
+    "name": "Fan"
+  },
+  {
+    "id": 9,
+    "name": "Hair Dryer"
+  },
+  {
+    "id": 10,
+    "name": "Hair Iron"
+  },
+  {
+    "id": 11,
+    "name": "Hob"
+  },
+  {
+    "id": 12,
+    "name": "Laptop"
+  },
+  {
+    "id": 13,
+    "name": "Microwave"
+  },
+  {
+    "id": 14,
+    "name": "Oven"
+  },
+  {
+    "id": 15,
+    "name": "Printer"
+  },
+  {
+    "id": 16,
+    "name": "Radio"
+  },
+  {
+    "id": 17,
+    "name": "Sewing Machine"
+  },
+  {
+    "id": 18,
+    "name": "Smoke Detector"
+  },
+  {
+    "id": 19,
+    "name": "Toaster"
+  },
+  {
+    "id": 20,
+    "name": "Vacuum"
+  },
+  {
+    "id": 21,
+    "name": "Washing Machine"
+  },
+  {
+    "id": 22,
+    "name": "Other"
+  }
+]

@@ -23,33 +23,6 @@ export class RegisterComponent {
 
   governorates = [];
 
-  /*governorates = [
-    "Ariana",
-    "Béja",
-    "Ben Arous",
-    "Bizerte",
-    "Gabès",
-    "Gafsa",
-    "Jendouba",
-    "Kairouan",
-    "Kasserine",
-    "Kebili",
-    "Kef",
-    "Mahdia",
-    "Manouba",
-    "Medenine",
-    "Monastir",
-    "Nabeul",
-    "Sfax",
-    "Sidi Bouzid",
-    "Siliana",
-    "Sousse",
-    "Tatouine",
-    "Tozeur",
-    "Tunis",
-    "Zaghouen"
-  ];*/
-
   credentials: TokenPayload = {
     email: "",
     password: ""

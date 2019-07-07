@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, NgForm } from "@angular/forms";
 import { PanelsService } from "../../../services/panels.service";
 import { MatDialogRef } from "@angular/material";
 import { Panel } from "../../../models/panel.modal";
@@ -12,17 +12,14 @@ import { User } from "../../../models/user.modal";
   styleUrls: ["./add-panel.component.scss"]
 })
 export class AddPanelComponent implements OnInit {
-  addPanelForm: FormGroup;
+  @ViewChild("f") addPanelForm: NgForm;
   current: User = new User();
 
   constructor(
-    private fb: FormBuilder,
     private panelService: PanelsService,
     private dialogRef: MatDialogRef<AddPanelComponent>,
     private authenticationService: AuthenticationService
-  ) {
-    this.createForm();
-  }
+  ) {}
 
   ngOnInit() {
     this.getCurrent();
@@ -40,29 +37,15 @@ export class AddPanelComponent implements OnInit {
     );
   }
 
-  createForm() {
-    this.addPanelForm = this.fb.group({});
-  }
-
-  addPanel(
-    manufacturer,
-    cellsNumber,
-    installationDate,
-    tilt,
-    azimuth,
-    capacity
-  ) {
+  addPanel() {
+    console.log("submitted!");
     let obj = new Panel();
-    (obj.manufacturer = manufacturer),
-      (obj.cellsNumber = cellsNumber),
-      (obj.installationDate = installationDate),
-      (obj.tilt = tilt),
-      (obj.azimuth = azimuth),
-      (obj.state = true),
-      (obj.owner = this.current.address),
-      (obj.capacity = capacity);
-
-    console.log(this.current.address);
+    obj.manufacturer = this.addPanelForm.value.manufacturer;
+    obj.capacity = this.addPanelForm.value.capacity;
+    obj.tilt = this.addPanelForm.value.tilt;
+    obj.azimuth = this.addPanelForm.value.azimuth;
+    obj.owner = this.current.address;
+    obj.state = true;
 
     this.panelService.addPanel(obj);
     this.dialogRef.close();

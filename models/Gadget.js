@@ -4,21 +4,12 @@ const Schema = mongoose.Schema;
 let Gadget = new Schema(
   {
     _id: Schema.Types.ObjectId,
-    name: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      required: true
-    },
-    owner: {
-      type: String,
-      required: true
-    },
-    watt: Number,
-    volt: Number,
-    amp: Number,
+    manufacturer: String,
+    type: String,
+    owner: String,
+    power: Number,
+    voltage: Number,
+    amperage: Number,
     state: Boolean
   },
   {

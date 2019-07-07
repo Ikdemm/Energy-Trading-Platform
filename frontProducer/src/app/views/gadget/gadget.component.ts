@@ -6,6 +6,7 @@ import { Gadget } from "../../models/gadget.modal";
 import { GadgetsService } from "../../services/gadgets.service";
 import { AuthenticationService } from "../../services/authentication.service";
 import { User } from "../../models/user.modal";
+import types from "../../../assets/json/types.json";
 
 @Component({
   selector: "app-gadget",
@@ -28,7 +29,7 @@ export class GadgetComponent implements OnInit {
   }
   openAddGadget(): void {
     const dialogRef = this.dialog.open(AddGadgetComponent, {
-      width: "250px",
+      width: "500px",
       data: {}
     });
     dialogRef.afterClosed().subscribe(res => {
@@ -37,7 +38,7 @@ export class GadgetComponent implements OnInit {
   }
 
   openEditGadget(gadget: Gadget): void {
-    const dialogRef = this.dialog.open(EditGadgetComponent, { width: "250px" });
+    const dialogRef = this.dialog.open(EditGadgetComponent, { width: "500px" });
     dialogRef.componentInstance.gadget = gadget;
     dialogRef.afterClosed().subscribe(res => {
       this.getlistGadgets();
@@ -81,22 +82,12 @@ export class GadgetComponent implements OnInit {
       this.getTotal();
     });
   }
-  /*
-  getCurrentGadgets(current, gadgets) {
-    gadgets.forEach(function(gadget) {
-      console.log(gadget);
-      if (gadget.owner === current.address) {
-        console.log(gadget);
-        this.currentGadgets.push(gadget);
-      }
-    });
-  }*/
 
   getTotal() {
     this.total = 0;
     this.gadgets.forEach(element => {
       if (element.state) {
-        this.total += element.watt;
+        this.total += element.power;
       }
     });
     console.log(this.total);
@@ -113,13 +104,10 @@ export class GadgetComponent implements OnInit {
     let obj = new Gadget();
 
     obj._id = gadget._id;
-    obj.name = gadget.name;
+    obj.manufacturer = gadget.manufacturer;
     obj.type = gadget.type;
-    obj.watt = gadget.watt;
-    obj.amp = gadget.amp;
-    obj.volt = gadget.volt;
+    obj.power = gadget.power;
     obj.state = gadget.state;
-    console.log(obj);
     this.gs.updateGadget(obj).subscribe(data => {
       console.log(data);
     });

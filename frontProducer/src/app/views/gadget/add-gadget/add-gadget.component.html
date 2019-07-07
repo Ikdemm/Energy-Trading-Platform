@@ -1,85 +1,82 @@
-<div class="example-container">
+<div class="container">
   <h4>Add an Appliance</h4>
 
   <!--Form-->
 
-  <form [formGroup]="addForm" novalidate>
+  <form (ngSubmit)="addGadget()" #f="ngForm">
     <div class="form-group">
-      <input matInput placeholder="Name" formControlName="gadget_name" #name />
+      <label for="manufacturer">Manufacturer</label>
+      <input
+        type="text"
+        id="manufacturer"
+        name="manufacturer"
+        class="form-control"
+        required
+        ngModel
+        #manufacturer
+      />
     </div>
 
-    <!--<div *ngIf="addForm.controls['gadget_name'].touched && (addForm.controls['gadget_name'].dirty || addForm.controls['gadget_name'].touched)" class="alert alert-danger">
-    <div *ngIf="addForm.controls['gadget_name'].errors.required">
-      <p class="error-msg">Name is required.</p>
-    </div>
-  </div>-->
-
-    <mat-form-field>
-      <mat-select placeholder="Type" #type>
-        <mat-option value="Television">Television</mat-option>
-        <mat-option value="Air Conditioner">Air Conditioner</mat-option>
-        <mat-option value="Fridge">Fridge</mat-option>
-        <mat-option value="Bulb">Bulb</mat-option>
-        <mat-option value="Clothes Iron">Clothes Iron</mat-option>
-        <mat-option value="Coffee Machine">Coffee Machine</mat-option>
-        <mat-option value="Dishwasher">Dishwasher</mat-option>
-        <mat-option value="Dyer">Dyer</mat-option>
-        <mat-option value="Fan">Fan</mat-option>
-        <mat-option value="Hair Dryer">Hair Dryer</mat-option>
-        <mat-option value="Hair Iron">Hair Iron</mat-option>
-        <mat-option value="Hob">Hob</mat-option>
-        <mat-option value="Laptop">Laptop</mat-option>
-        <mat-option value="Microwave">Microwave</mat-option>
-        <mat-option value="Oven">Oven</mat-option>
-        <mat-option value="Printer">Printer</mat-option>
-        <mat-option value="Radio">Radio</mat-option>
-        <mat-option value="Sewing Machine">Sewing Machine</mat-option>
-        <mat-option value="Smoke Detector">Smoke Detector</mat-option>
-        <mat-option value="Toaster">Toaster</mat-option>
-        <mat-option value="Vacuum">Vacuum</mat-option>
-        <mat-option value="Toaster">Washing Machine</mat-option>
-        <mat-option value="Other">Other</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Wattage" #watt />
-      <span matSuffix>W</span>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Amp" #amp />
-      <span matSuffix>A</span>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Voltage" #volt />
-      <span matSuffix>V</span>
-    </mat-form-field>
-
     <div class="form-group">
-      <button
-        type="submit"
-        class="btn btn-primary"
-        (click)="
-          addGadget(
-            name.value,
-            type.value,
-            watt.value,
-            amp.value,
-            volt.value,
-            true
-          )
-        "
+      <label for="power">Power</label>
+      <input
+        type="number"
+        id="power"
+        name="power"
+        class="form-control"
+        required
+        ngModel
+        #power
+      />
+      <span class="help-block" *ngIf="power.value > 180"
+        >Power should be between 0 and 180°</span
       >
-        Confirm
-      </button>
-
-      <button class="btn btn-danger" (click)="closeModal()">
-        Cancel
-      </button>
     </div>
-  </form>
 
+    <div class="form-group">
+      <label for="amperage">amperage</label>
+      <input
+        type="number"
+        id="amperage"
+        name="amperage"
+        class="form-control"
+        required
+        ngModel
+        #amperage
+      />
+      <span class="help-block" *ngIf="amperage.value > 200"
+        >Very big amperage value</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="voltage">Voltage</label>
+      <input
+        type="number"
+        id="voltage"
+        name="voltage"
+        class="form-control"
+        required
+        ngModel
+        #voltage
+      />
+      <span class="help-block" *ngIf="voltage.value > 180"
+        >Very big voltage value</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Type</label>
+      <ng-select [items]="types" placeholder="Select type" name="type" required>
+      </ng-select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+      Submit
+    </button>
+    <button class="btn btn-danger" (click)="closeModal()">
+      Cancel
+    </button>
+  </form>
   <!--/Form-->
 </div>

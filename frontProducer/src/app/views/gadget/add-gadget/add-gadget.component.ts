@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { GadgetsService } from "../../../services/gadgets.service";
 import { User } from "../../../models/user.modal";
 import { AuthenticationService } from "../../../services/authentication.service";
+import { Gadget } from "../../../models/gadget.modal";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-add-gadget",
@@ -11,33 +12,60 @@ import { AuthenticationService } from "../../../services/authentication.service"
   styleUrls: ["./add-gadget.component.scss"]
 })
 export class AddGadgetComponent implements OnInit {
-  addForm: FormGroup;
+  @ViewChild("f") addGadgetForm: NgForm;
   current: User = new User();
+  selectedType: any;
+
+  types = [
+    "Television",
+    "Air Conditioner",
+    "Fridge",
+    "Bulb",
+    "Clothes Iron",
+    "Coffee Machine",
+    "Dishwasher",
+    "Dyer",
+    "Fan",
+    "Hair Dryer",
+    "Hair Iron",
+    "Hob",
+    "Laptop",
+    "Microwave",
+    "Oven",
+    "Printer",
+    "Radio",
+    "Sewing Machine",
+    "Smoke Detector",
+    "Toaster",
+    "Vacuum",
+    "Washing Machine",
+    "Other"
+  ];
 
   constructor(
-    private fb: FormBuilder,
-    private gs: GadgetsService,
+    private gadgetService: GadgetsService,
     public dialogRef: MatDialogRef<AddGadgetComponent>,
     private authenticationService: AuthenticationService
-  ) {
-    this.createForm();
-  }
+  ) {}
 
-  createForm() {
-    this.addForm = this.fb.group({
-      gadget_name: ["", Validators.required],
-      gadget_type: ["", Validators.required],
-      gadget_wattage: ["", Validators.required]
-    });
-  }
-
-  addGadget(name, type, watt, amp, volt) {
+  addGadget() {
     let current = this.current;
     console.log(current);
     let address = current.address;
     console.log(address);
-    this.gs.addGadget(name, type, watt, amp, volt, true, address);
     this.dialogRef.close();
+    let obj = new Gadget();
+    obj.manufacturer = this.addGadgetForm.value.manufacturer;
+    obj.owner = this.current.address;
+    obj.power = this.addGadgetForm.value.power;
+    obj.amperage = this.addGadgetForm.value.amperage;
+    obj.voltage = this.addGadgetForm.value.voltage;
+    obj.type = this.addGadgetForm.value.type;
+    obj.state = true;
+
+    console.log(obj);
+
+    this.gadgetService.addGadget(obj);
   }
 
   closeModal() {
@@ -58,6 +86,7 @@ export class AddGadgetComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.types);
     this.getCurrentAddress();
   }
 }

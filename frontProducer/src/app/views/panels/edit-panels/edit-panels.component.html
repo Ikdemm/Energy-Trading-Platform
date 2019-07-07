@@ -3,51 +3,74 @@
 
   <!--Form-->
 
-  <form [formGroup]="editPanelForm" novalidate>
-    <mat-form-field>
-      <input matInput [value]="panel.manufacturer" #manufacturer />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [value]="panel.cellsNumber" #cellsNumber />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [value]="panel.tilt" #tilt />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [value]="panel.tilt" #tilt />
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [value]="panel.capacity" #capacity />
-    </mat-form-field>
-
-    <mat-form-field>
+  <form (ngSubmit)="editPanel()" #f="ngForm">
+    <div class="form-group">
+      <label for="manufacturer">Manufacturer</label>
       <input
-        matInput
-        [matDatepicker]="picker"
-        [value]="panel.installationDate"
+        type="text"
+        id="manufacturer"
+        name="manufacturer"
+        class="form-control"
+        placeholder="{{ panel.manufacturer }}"
+        required
+        ngModel
+        #manufacturer
       />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #picker></mat-datepicker>
-    </mat-form-field>
+    </div>
 
     <div class="form-group">
-      <button
-        type="submit"
-        class="btn btn-primary"
-        (click)="
-          updatePanel(
-            number.value,
-            manufacturer.value,
-            cellsNumber.value,
-            picker.value,
-            STCOutput.value
-          )
-        "
+      <label for="capacity">Capacity</label>
+      <input
+        type="text"
+        id="capacity"
+        name="capacity"
+        class="form-control"
+        placeholder="{{ panel.capacity }}"
+        required
+        ngModel
+        #capacity
+      />
+      <span class="help-block" *ngIf="capacity.value > 1000"
+        >Capacity should be between 0 and 1000 kW</span
       >
+    </div>
+
+    <div class="form-group">
+      <label for="tilt">Tilt</label>
+      <input
+        type="text"
+        id="tilt"
+        name="tilt"
+        class="form-control"
+        placeholder="{{ panel.tilt }}"
+        required
+        ngModel
+        #tilt
+      />
+      <span class="help-block" *ngIf="tilt.value > 180"
+        >Azimuth should be between 0 and 180°</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="azimuth">Azimuth</label>
+      <input
+        type="text"
+        id="azimuth"
+        name="azimuth"
+        class="form-control"
+        placeholder="{{ panel.azimuth }}"
+        required
+        ngModel
+        #azimuth
+      />
+      <span class="help-block" *ngIf="azimuth.value > 359"
+        >Azimuth should be between 0 and 360°</span
+      >
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="updatePanel()">
         Confirm
       </button>
 

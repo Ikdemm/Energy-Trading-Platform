@@ -48,18 +48,7 @@ module.exports = {
   },
   //updating marque from database
   update: function(body, id, model) {
-    model.findOneAndUpdate({ _id: id }, body, { new: true }, function(
-      err,
-      result
-    ) {
-      if (err) {
-        console.log(err);
-        return err;
-      } else {
-        console.log(result);
-        return result;
-      }
-    });
+    return model.findOneAndUpdate({ _id: id }, body, { new: true });
   },
   //deleting marque from database
   remove: function(id, model) {

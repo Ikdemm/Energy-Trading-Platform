@@ -9,35 +9,34 @@
   filter: grayscale(100%);
 }
 
+.bottom-cards {
+  position: -webkit-sticky;
+  position: fixed;
+  z-index: 1;
+  height: 4em;
+  right: 5em;
+  bottom: 2em;
+}
+
 .total-card {
   background-image: linear-gradient(to right, #f83600 0%, #f97923 100%);
   color: white;
   overflow: auto;
-  position: -webkit-sticky;
-  position: fixed;
-  z-index: 1;
-  right: 2em;
-  bottom: 2em;
+  margin-left: 1em;
 }
 
 .add-button {
-  position: -webkit-sticky;
-  position: fixed;
-  z-index: 1;
   background-color: #130f40;
-  background-image: linear-gradient(315deg, #241d6e 0%, #011963e7 74%);
-  border-color: transparent;
-  height: 4em;
-  right: 15em;
-  bottom: 2em;
+  background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
   color: white;
+  text-align: center;
+  height: 4em;
 }
 
-.add-button:hover {
-  background-color: white;
-  background-image: none;
-  color: #130f40;
-  border-color: #130f40;
+.add-button:hover,
+.add-button:focus {
+  background-image: linear-gradient(315deg, #02001b 0%, #000000 74%);
+  background-color: black;
 }
 
 .gadget-card {
